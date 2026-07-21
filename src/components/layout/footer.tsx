@@ -18,14 +18,9 @@ export function Footer() {
               alt="ESPOFF Performance"
               className="h-14 w-14 shrink-0"
             />
-            <div>
-              <p className="font-heading text-base font-medium uppercase tracking-[0.15em]">
-                ESPOFF Performance
-              </p>
-              <p className="mt-1 text-sm text-white/60">
-                Accesorios de alto rendimiento para tu auto
-              </p>
-            </div>
+            <p className="font-sans text-base font-extrabold uppercase tracking-[-0.01em]">
+              ESPOFF Performance
+            </p>
           </div>
 
           <div className="flex gap-3">

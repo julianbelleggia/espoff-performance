@@ -24,7 +24,7 @@ const oswald = Oswald({
 export const metadata: Metadata = {
   title: "ESPOFF Performance",
   description:
-    "Alerones, volantes, lips, difusores y escapes premium (Akrapovic, Milltek y más) para llevar tu auto al siguiente nivel.",
+    "Spoilers, volantes, lips, difusores y escapes premium (Akrapovic, Milltek y más) para llevar tu auto al siguiente nivel.",
 };
 
 export default function RootLayout({

@@ -15,12 +15,21 @@ export function ProductCard({ product }: { product: Product }) {
       href={`/producto/${product.slug}`}
       className="group flex flex-col overflow-hidden rounded-lg border border-border/60 bg-card/40 transition-colors hover:border-border"
     >
-      <div className="relative aspect-[4/3]">
-        <ProductVisual
-          icon={category?.icon ?? "wing"}
-          label={category?.name}
-          className="h-full w-full transition-transform duration-300 group-hover:scale-[1.03]"
-        />
+      <div className="relative aspect-[4/3] overflow-hidden bg-card">
+        {product.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <ProductVisual
+            icon={category?.icon ?? "wing"}
+            label={category?.name}
+            className="h-full w-full transition-transform duration-300 group-hover:scale-[1.03]"
+          />
+        )}
         {!product.inStock && (
           <Badge
             variant="secondary"
@@ -38,7 +47,9 @@ export function ProductCard({ product }: { product: Product }) {
         <h3 className="line-clamp-1 text-sm font-medium">{product.name}</h3>
         <div className="mt-auto flex items-center justify-between pt-2">
           <span className="font-mono text-sm font-medium">
-            {formatPrice(product.price, product.currency)}
+            {product.priceOnRequest
+              ? "Consultar precio"
+              : formatPrice(product.price, product.currency)}
           </span>
         </div>
       </div>

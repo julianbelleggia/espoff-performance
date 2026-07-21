@@ -11,7 +11,12 @@ export type CategoryIcon =
   | "wheel"
   | "lip"
   | "diffuser"
-  | "exhaust";
+  | "exhaust"
+  | "bodykit"
+  | "badge"
+  | "mirror"
+  | "tip"
+  | "rim";
 
 export type Brand = {
   id: string;
@@ -23,6 +28,12 @@ export type Brand = {
 export type ProductSpec = {
   label: string;
   value: string;
+};
+
+export type ProductColorOption = {
+  name: string;
+  image: string;
+  images?: string[];
 };
 
 export type Product = {
@@ -39,9 +50,16 @@ export type Product = {
   material?: string;
   inStock: boolean;
   featured?: boolean;
+  image?: string;
+  images?: string[];
+  priceOnRequest?: boolean;
+  colors?: ProductColorOption[];
+  diameters?: string[];
 };
 
 export type CartItem = {
   productId: string;
   quantity: number;
+  color?: string;
+  diameter?: string;
 };

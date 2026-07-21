@@ -61,7 +61,7 @@ export default function NosotrosPage() {
         </h1>
         <p className="mt-6 max-w-2xl text-sm text-muted-foreground sm:text-base">
           ESPOFF Performance es una tienda especializada en accesorios de alto
-          rendimiento: alerones, volantes, lips, difusores y escapes de las
+          rendimiento: spoilers, volantes, lips, difusores y escapes de las
           marcas más reconocidas del mundo del automovilismo y el tuning.
           Trabajamos con dueños de autos que no se conforman con lo de
           fábrica y buscan aerodinámica, sonido y actitud, sin comprometer la

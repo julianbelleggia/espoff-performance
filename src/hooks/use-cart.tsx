@@ -13,15 +13,21 @@ import { products } from "@/lib/data/products";
 
 const STORAGE_KEY = "apex-cart";
 
+type CartVariant = { color?: string; diameter?: string };
+
 type CartContextValue = {
   items: CartItem[];
-  addItem: (productId: string, quantity?: number) => void;
-  removeItem: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
+  addItem: (productId: string, quantity?: number, variant?: CartVariant) => void;
+  removeItem: (productId: string, variant?: CartVariant) => void;
+  updateQuantity: (productId: string, quantity: number, variant?: CartVariant) => void;
   clearCart: () => void;
   itemCount: number;
   subtotal: number;
 };
+
+function sameVariant(item: CartItem, variant?: CartVariant) {
+  return item.color === variant?.color && item.diameter === variant?.diameter;
+}
 
 const CartContext = createContext<CartContextValue | null>(null);
 
@@ -46,32 +52,47 @@ export function CartProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items, hydrated]);
 
-  const addItem = (productId: string, quantity = 1) => {
+  const addItem = (productId: string, quantity = 1, variant?: CartVariant) => {
     setItems((prev) => {
-      const existing = prev.find((item) => item.productId === productId);
+      const existing = prev.find(
+        (item) => item.productId === productId && sameVariant(item, variant)
+      );
       if (existing) {
         return prev.map((item) =>
-          item.productId === productId
+          item.productId === productId && sameVariant(item, variant)
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       }
-      return [...prev, { productId, quantity }];
+      return [
+        ...prev,
+        { productId, quantity, color: variant?.color, diameter: variant?.diameter },
+      ];
     });
   };
 
-  const removeItem = (productId: string) => {
-    setItems((prev) => prev.filter((item) => item.productId !== productId));
+  const removeItem = (productId: string, variant?: CartVariant) => {
+    setItems((prev) =>
+      prev.filter(
+        (item) => !(item.productId === productId && sameVariant(item, variant))
+      )
+    );
   };
 
-  const updateQuantity = (productId: string, quantity: number) => {
+  const updateQuantity = (
+    productId: string,
+    quantity: number,
+    variant?: CartVariant
+  ) => {
     if (quantity <= 0) {
-      removeItem(productId);
+      removeItem(productId, variant);
       return;
     }
     setItems((prev) =>
       prev.map((item) =>
-        item.productId === productId ? { ...item, quantity } : item
+        item.productId === productId && sameVariant(item, variant)
+          ? { ...item, quantity }
+          : item
       )
     );
   };

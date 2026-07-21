@@ -27,29 +27,17 @@ export async function generateMetadata({
 
 export default async function CategoriaPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ categoria: string }>;
-  searchParams: Promise<{ tipo?: string }>;
 }) {
   const { categoria } = await params;
-  const { tipo } = await searchParams;
   const category = getCategoryBySlug(categoria);
 
   if (!category) {
     notFound();
   }
 
-  let categoryProducts = getProductsByCategory(category.id);
-
-  const tipoLabel =
-    tipo === "delantero" ? "Delanteros" : tipo === "trasero" ? "Traseros" : null;
-
-  if (tipoLabel) {
-    categoryProducts = categoryProducts.filter((product) =>
-      product.name.toLowerCase().includes(tipo!.toLowerCase())
-    );
-  }
+  const categoryProducts = getProductsByCategory(category.id);
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -64,27 +52,13 @@ export default async function CategoriaPage({
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            {tipoLabel ? (
-              <BreadcrumbLink href={`/catalogo/${category.slug}`}>
-                {category.name}
-              </BreadcrumbLink>
-            ) : (
-              <BreadcrumbPage>{category.name}</BreadcrumbPage>
-            )}
+            <BreadcrumbPage>{category.name}</BreadcrumbPage>
           </BreadcrumbItem>
-          {tipoLabel && (
-            <>
-              <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbPage>{tipoLabel}</BreadcrumbPage>
-              </BreadcrumbItem>
-            </>
-          )}
         </BreadcrumbList>
       </Breadcrumb>
 
       <h1 className="mb-2 font-heading text-3xl uppercase tracking-wide">
-        {tipoLabel ? `Lips ${tipoLabel}` : category.name}
+        {category.name}
       </h1>
       <p className="mb-8 max-w-2xl text-sm text-muted-foreground">
         {category.description}

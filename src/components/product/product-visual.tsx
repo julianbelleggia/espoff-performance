@@ -1,4 +1,4 @@
-import { Wind, Disc3, PanelBottom, Rows3, Flame } from "lucide-react";
+import { Wind, Disc3, PanelBottom, Rows3, Flame, Car, Sticker, MirrorRectangular, CircleDot, CircleDashed } from "lucide-react";
 import type { CategoryIcon } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -8,6 +8,11 @@ const ICONS: Record<CategoryIcon, typeof Wind> = {
   lip: PanelBottom,
   diffuser: Rows3,
   exhaust: Flame,
+  bodykit: Car,
+  badge: Sticker,
+  mirror: MirrorRectangular,
+  tip: CircleDot,
+  rim: CircleDashed,
 };
 
 export function ProductVisual({

@@ -17,17 +17,12 @@ export function Navbar() {
   );
   const [isHovered, setIsHovered] = useState(false);
   const [hidden, setHidden] = useState(false);
-  const lastScrollY = useRef(0);
 
   useEffect(() => {
-    lastScrollY.current = window.scrollY;
+    setHidden(window.scrollY > 0);
 
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      const scrollingDown = currentScrollY > lastScrollY.current;
-
-      setHidden(scrollingDown && currentScrollY > 120 && !mobileOpen);
-      lastScrollY.current = currentScrollY;
+      setHidden(window.scrollY > 0 && !mobileOpen);
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -45,7 +40,7 @@ export function Navbar() {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        "sticky top-0 z-40 will-change-transform transition-[transform,background-color] duration-300 ease-out",
+        "sticky top-0 z-40 will-change-transform transition-transform duration-300 ease-out",
         hidden ? "-translate-y-full" : "translate-y-0",
         isHovered || mobileOpen ? "bg-black" : "bg-transparent"
       )}

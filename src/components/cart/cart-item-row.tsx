@@ -13,15 +13,23 @@ import type { Product } from "@/lib/types";
 export function CartItemRow({
   product,
   quantity,
+  color,
+  diameter,
   compact = false,
 }: {
   product: Product;
   quantity: number;
+  color?: string;
+  diameter?: string;
   compact?: boolean;
 }) {
   const { updateQuantity, removeItem } = useCart();
   const category = getCategoryById(product.categoryId);
   const brand = getBrandById(product.brandId);
+  const variant = { color, diameter };
+  const variantImage = color
+    ? product.colors?.find((c) => c.name === color)?.image
+    : undefined;
 
   return (
     <div className="flex gap-3 py-4">
@@ -32,11 +40,20 @@ export function CartItemRow({
           compact ? "h-16 w-16" : "h-24 w-24"
         )}
       >
-        <ProductVisual
-          icon={category?.icon ?? "wing"}
-          className="h-full w-full rounded-md"
-          iconClassName={compact ? "h-6 w-6" : "h-8 w-8"}
-        />
+        {variantImage ?? product.image ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={variantImage ?? product.image}
+            alt={product.name}
+            className="h-full w-full rounded-md object-cover"
+          />
+        ) : (
+          <ProductVisual
+            icon={category?.icon ?? "wing"}
+            className="h-full w-full rounded-md"
+            iconClassName={compact ? "h-6 w-6" : "h-8 w-8"}
+          />
+        )}
       </Link>
 
       <div className="flex flex-1 flex-col gap-1 min-w-0">
@@ -49,9 +66,16 @@ export function CartItemRow({
               {product.name}
             </Link>
             <p className="text-xs text-muted-foreground">{brand?.name}</p>
+            {(color || diameter) && (
+              <p className="text-xs text-muted-foreground">
+                {[color, diameter && `Rodado ${diameter}"`]
+                  .filter(Boolean)
+                  .join(" · ")}
+              </p>
+            )}
           </div>
           <button
-            onClick={() => removeItem(product.id)}
+            onClick={() => removeItem(product.id, variant)}
             className="shrink-0 text-muted-foreground hover:text-foreground"
             aria-label="Quitar del carrito"
           >
@@ -65,7 +89,7 @@ export function CartItemRow({
               variant="ghost"
               size="icon-sm"
               className="h-7 w-7"
-              onClick={() => updateQuantity(product.id, quantity - 1)}
+              onClick={() => updateQuantity(product.id, quantity - 1, variant)}
               aria-label="Restar cantidad"
             >
               <Minus className="h-3 w-3" />
@@ -77,14 +101,16 @@ export function CartItemRow({
               variant="ghost"
               size="icon-sm"
               className="h-7 w-7"
-              onClick={() => updateQuantity(product.id, quantity + 1)}
+              onClick={() => updateQuantity(product.id, quantity + 1, variant)}
               aria-label="Sumar cantidad"
             >
               <Plus className="h-3 w-3" />
             </Button>
           </div>
           <span className="font-mono text-sm">
-            {formatPrice(product.price * quantity, product.currency)}
+            {product.priceOnRequest
+              ? "Consultar"
+              : formatPrice(product.price * quantity, product.currency)}
           </span>
         </div>
       </div>

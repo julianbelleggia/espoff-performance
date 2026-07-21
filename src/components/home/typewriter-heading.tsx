@@ -42,7 +42,7 @@ export function TypewriterHeading() {
   const showCursorLine2 = phase === "typing" && count === total;
 
   return (
-    <h1 className="min-h-[2.2em] font-sans text-4xl font-extrabold uppercase leading-[1.05] tracking-[-0.01em] sm:text-6xl md:text-7xl">
+    <h1 className="min-h-[2.2em] font-sans text-4xl font-extrabold uppercase leading-[1.05] tracking-[-0.01em] text-white/65 sm:text-6xl md:text-7xl">
       {line1Text}
       <br />
       <span>

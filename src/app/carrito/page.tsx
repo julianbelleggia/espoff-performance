@@ -47,9 +47,11 @@ export default function CarritoPage() {
             if (!product) return null;
             return (
               <CartItemRow
-                key={item.productId}
+                key={`${item.productId}-${item.color ?? ""}-${item.diameter ?? ""}`}
                 product={product}
                 quantity={item.quantity}
+                color={item.color}
+                diameter={item.diameter}
               />
             );
           })}

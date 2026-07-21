@@ -1,15 +1,14 @@
 export const catalogLinks = [
-  { label: "Alerones", href: "/catalogo/alerones" },
+  { label: "Spoilers", href: "/catalogo/spoilers" },
   { label: "Volantes", href: "/catalogo/volantes" },
-  {
-    label: "Lips",
-    children: [
-      { label: "Delanteros", href: "/catalogo/lips?tipo=delantero" },
-      { label: "Traseros", href: "/catalogo/lips?tipo=trasero" },
-    ],
-  },
+  { label: "Lips", href: "/catalogo/lips" },
   { label: "Difusores", href: "/catalogo/difusores" },
   { label: "Escapes", href: "/catalogo/escapes" },
+  { label: "Colas de Escape", href: "/catalogo/colas-de-escape" },
+  { label: "Body Kits", href: "/catalogo/body-kits" },
+  { label: "Insignias", href: "/catalogo/insignias" },
+  { label: "Cubre Espejos", href: "/catalogo/cubre-espejos" },
+  { label: "Llantas", href: "/catalogo/llantas" },
   {
     label: "Servicios",
     children: [
