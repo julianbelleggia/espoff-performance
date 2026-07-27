@@ -13,6 +13,7 @@ import { ProductSpecs } from "@/components/product/product-specs";
 import { AddToCart } from "@/components/product/add-to-cart";
 import { WheelPurchasePanel } from "@/components/product/wheel-purchase-panel";
 import { RelatedProducts } from "@/components/product/related-products";
+import { PriceTag } from "@/components/product/price-tag";
 import { getCategoryById } from "@/lib/data/categories";
 import { getBrandById } from "@/lib/data/brands";
 import {
@@ -20,7 +21,6 @@ import {
   getProductBySlug,
   getRelatedProducts,
 } from "@/lib/data/products";
-import { formatPrice } from "@/lib/utils";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
@@ -111,9 +111,10 @@ export default async function ProductoPage({
             </h1>
 
             <div className="mt-4 flex items-center gap-3">
-              <span className="font-mono text-2xl font-medium">
-                {formatPrice(product.price, product.currency)}
-              </span>
+              <PriceTag
+                price={product.price}
+                className="font-mono text-2xl font-medium"
+              />
               {product.inStock ? (
                 <Badge variant="secondary">En stock</Badge>
               ) : (

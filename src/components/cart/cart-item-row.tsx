@@ -5,9 +5,10 @@ import { Minus, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductVisual } from "@/components/product/product-visual";
 import { useCart } from "@/hooks/use-cart";
+import { useCurrency } from "@/hooks/use-currency";
 import { getCategoryById } from "@/lib/data/categories";
 import { getBrandById } from "@/lib/data/brands";
-import { formatPrice, cn } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import type { Product } from "@/lib/types";
 
 export function CartItemRow({
@@ -24,6 +25,7 @@ export function CartItemRow({
   compact?: boolean;
 }) {
   const { updateQuantity, removeItem } = useCart();
+  const { format } = useCurrency();
   const category = getCategoryById(product.categoryId);
   const brand = getBrandById(product.brandId);
   const variant = { color, diameter };
@@ -110,7 +112,7 @@ export function CartItemRow({
           <span className="font-mono text-sm">
             {product.priceOnRequest
               ? "Consultar"
-              : formatPrice(product.price * quantity, product.currency)}
+              : format(product.price * quantity)}
           </span>
         </div>
       </div>

@@ -25,9 +25,14 @@ export function FeaturedProducts() {
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="scrollbar-none flex gap-5 overflow-x-auto pb-2 [scroll-snap-type:x_proximity]">
         {featured.map((product) => (
-          <ProductCard key={product.id} product={product} />
+          <div
+            key={product.id}
+            className="w-[250px] shrink-0 [scroll-snap-align:start]"
+          >
+            <ProductCard product={product} />
+          </div>
         ))}
       </div>
     </section>

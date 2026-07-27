@@ -52,7 +52,7 @@ export default function ContactoPage() {
           rel="noopener noreferrer"
           className="group flex flex-col justify-between rounded-lg border border-border/60 bg-card/40 p-6 transition-colors hover:border-foreground"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-foreground">
+          <div className="flex items-center justify-center text-foreground">
             {whatsapp.icon}
           </div>
           <div className="mt-6">
@@ -75,7 +75,7 @@ export default function ContactoPage() {
               Seguinos para ver instalaciones y novedades
             </p>
           </div>
-          <div className="mt-6 flex gap-3">
+          <div className="mt-6 flex items-center gap-4">
             {otherSocials.map((social) => (
               <a
                 key={social.name}
@@ -83,7 +83,7 @@ export default function ContactoPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.name}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-border/60 text-foreground/80 transition-colors hover:border-foreground hover:text-foreground"
+                className="flex items-center justify-center text-foreground/80 transition-colors hover:text-foreground"
               >
                 {social.icon}
               </a>

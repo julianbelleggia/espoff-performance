@@ -6,11 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CartItemRow } from "@/components/cart/cart-item-row";
 import { useCart } from "@/hooks/use-cart";
+import { useCurrency } from "@/hooks/use-currency";
 import { products } from "@/lib/data/products";
-import { formatPrice } from "@/lib/utils";
 
 export default function CarritoPage() {
   const { items, subtotal, clearCart } = useCart();
+  const { format } = useCurrency();
 
   if (items.length === 0) {
     return (
@@ -64,7 +65,7 @@ export default function CarritoPage() {
           <Separator className="my-4" />
           <div className="flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Subtotal</span>
-            <span className="font-mono">{formatPrice(subtotal)}</span>
+            <span className="font-mono">{format(subtotal)}</span>
           </div>
           <div className="mt-2 flex items-center justify-between text-sm">
             <span className="text-muted-foreground">Envío</span>
@@ -73,7 +74,7 @@ export default function CarritoPage() {
           <Separator className="my-4" />
           <div className="flex items-center justify-between text-base font-medium">
             <span>Total</span>
-            <span className="font-mono">{formatPrice(subtotal)}</span>
+            <span className="font-mono">{format(subtotal)}</span>
           </div>
 
           <Button size="lg" className="mt-6 w-full uppercase tracking-wide" disabled>

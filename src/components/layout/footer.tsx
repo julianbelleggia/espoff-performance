@@ -23,7 +23,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex items-center gap-4">
             {socials.map((social) => (
               <a
                 key={social.name}
@@ -31,7 +31,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.name}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-white/25 text-white transition-colors hover:border-white hover:bg-white/10"
+                className="flex items-center justify-center text-white/85 transition-colors hover:text-white"
               >
                 {social.icon}
               </a>

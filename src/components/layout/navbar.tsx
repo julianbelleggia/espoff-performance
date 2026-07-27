@@ -6,6 +6,7 @@ import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CartSheet } from "@/components/cart/cart-sheet";
 import { CatalogDropdown } from "@/components/layout/catalog-dropdown";
+import { CurrencySwitcher } from "@/components/layout/currency-switcher";
 import { catalogLinks } from "@/lib/data/catalog-links";
 import { cn } from "@/lib/utils";
 
@@ -77,7 +78,8 @@ export function Navbar() {
         </nav>
       </div>
 
-      <div className="absolute right-2 top-1/2 z-50 flex -translate-y-1/2 items-center gap-1">
+      <div className="absolute right-2 top-1/2 z-50 flex -translate-y-1/2 items-center gap-2">
+        <CurrencySwitcher />
         <CartSheet />
         <Button
           variant="ghost"

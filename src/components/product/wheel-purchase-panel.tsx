@@ -6,7 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ProductGallery } from "@/components/product/product-gallery";
 import { useCart } from "@/hooks/use-cart";
-import { cn, formatPrice } from "@/lib/utils";
+import { useCurrency } from "@/hooks/use-currency";
+import { cn } from "@/lib/utils";
 import type { CategoryIcon, Product } from "@/lib/types";
 
 const WHATSAPP_PHONE = "541139541545";
@@ -29,6 +30,7 @@ export function WheelPurchasePanel({
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
+  const { format } = useCurrency();
 
   const selectedColor = colors[colorIndex];
 
@@ -78,7 +80,7 @@ export function WheelPurchasePanel({
             </span>
           ) : (
             <span className="font-mono text-2xl font-medium">
-              {formatPrice(product.price, product.currency)}
+              {format(product.price)}
             </span>
           )}
           {product.inStock ? (

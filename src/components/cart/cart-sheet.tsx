@@ -14,12 +14,13 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { CartItemRow } from "@/components/cart/cart-item-row";
 import { useCart } from "@/hooks/use-cart";
+import { useCurrency } from "@/hooks/use-currency";
 import { products } from "@/lib/data/products";
-import { formatPrice } from "@/lib/utils";
 import { useState } from "react";
 
 export function CartSheet() {
   const { items, itemCount, subtotal } = useCart();
+  const { format } = useCurrency();
   const [open, setOpen] = useState(false);
 
   return (
@@ -75,7 +76,7 @@ export function CartSheet() {
               <div className="flex items-center justify-between text-sm">
                 <span className="text-muted-foreground">Subtotal</span>
                 <span className="font-mono text-base font-medium">
-                  {formatPrice(subtotal)}
+                  {format(subtotal)}
                 </span>
               </div>
               <Button asChild size="lg" className="w-full">

@@ -1,14 +1,17 @@
+"use client";
+
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { ProductVisual } from "@/components/product/product-visual";
 import { getBrandById } from "@/lib/data/brands";
 import { getCategoryById } from "@/lib/data/categories";
-import { formatPrice } from "@/lib/utils";
+import { useCurrency } from "@/hooks/use-currency";
 import type { Product } from "@/lib/types";
 
 export function ProductCard({ product }: { product: Product }) {
   const brand = getBrandById(product.brandId);
   const category = getCategoryById(product.categoryId);
+  const { format } = useCurrency();
 
   return (
     <Link
@@ -49,7 +52,7 @@ export function ProductCard({ product }: { product: Product }) {
           <span className="font-mono text-sm font-medium">
             {product.priceOnRequest
               ? "Consultar precio"
-              : formatPrice(product.price, product.currency)}
+              : format(product.price)}
           </span>
         </div>
       </div>
