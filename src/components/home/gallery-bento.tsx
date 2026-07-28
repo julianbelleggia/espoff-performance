@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { socials } from "@/lib/data/socials";
 
 const instagramHref =
@@ -53,10 +54,8 @@ export function GalleryBento() {
             </a>
           ))}
 
-          <a
-            href={instagramHref}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href="/galeria"
             className="group relative col-start-2 row-start-1 row-span-2 block overflow-hidden rounded"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -80,7 +79,7 @@ export function GalleryBento() {
                 Ver Galería
               </span>
             </div>
-          </a>
+          </Link>
 
           <a
             href={instagramHref}

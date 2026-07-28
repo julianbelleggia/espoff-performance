@@ -64,6 +64,12 @@ export function Navbar() {
           <CatalogDropdown />
 
           <Link
+            href="/galeria"
+            className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+          >
+            Galería
+          </Link>
+          <Link
             href="/nosotros"
             className="text-sm text-foreground/80 transition-colors hover:text-foreground"
           >
@@ -164,6 +170,13 @@ export function Navbar() {
             </div>
           )}
 
+          <Link
+            href="/galeria"
+            className="py-2 text-sm text-foreground/80"
+            onClick={closeMobileMenu}
+          >
+            Galería
+          </Link>
           <Link
             href="/nosotros"
             className="py-2 text-sm text-foreground/80"
