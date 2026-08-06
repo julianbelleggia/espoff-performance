@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { socials } from "@/lib/data/socials";
+import { useReveal } from "@/hooks/use-reveal";
 
 const links = [
   { label: "Mapa del sitio", href: "/catalogo" },
@@ -7,10 +10,25 @@ const links = [
 ];
 
 export function Footer() {
+  const { ref: contentRef, style: contentStyle } = useReveal<HTMLDivElement>({
+    y: 48,
+    duration: 900,
+  });
+  const { ref: imageRef, style: imageStyle } = useReveal<HTMLDivElement>({
+    y: 0,
+    scale: 1.15,
+    delay: 100,
+    duration: 1000,
+  });
+
   return (
     <footer className="relative overflow-hidden bg-black text-white">
       <div className="relative flex min-h-[220px] flex-col md:min-h-[260px] md:flex-row">
-        <div className="relative z-10 flex flex-1 flex-col justify-center gap-6 px-6 py-10 sm:px-10 md:py-12">
+        <div
+          ref={contentRef}
+          style={contentStyle}
+          className="relative z-10 flex flex-1 flex-col justify-center gap-6 px-6 py-10 sm:px-10 md:py-12"
+        >
           <div className="flex items-center gap-4">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -18,33 +36,29 @@ export function Footer() {
               alt="ESPOFF Performance"
               className="h-14 w-14 shrink-0"
             />
-            <p className="font-sans text-base font-extrabold uppercase tracking-[-0.01em]">
-              ESPOFF Performance
-            </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col items-start gap-2 font-nav">
             {socials.map((social) => (
               <a
                 key={social.name}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={social.name}
-                className="flex items-center justify-center text-white/85 transition-colors hover:text-white"
+                className="text-xs uppercase tracking-[0.08em] text-white/85 transition-colors hover:text-white"
               >
-                {social.icon}
+                {social.name}
               </a>
             ))}
           </div>
 
           <div className="max-w-md border-t border-white/15 pt-5">
-            <ul className="flex flex-wrap gap-x-8 gap-y-2">
+            <ul className="flex flex-wrap gap-x-8 gap-y-2 font-nav">
               {links.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-sm text-white/70 transition-colors hover:text-white"
+                    className="text-xs uppercase tracking-[0.08em] text-white/70 transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -53,13 +67,17 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="text-xs text-white/40">
+          <div className="font-nav text-xs uppercase tracking-[0.08em] text-white/40">
             © {new Date().getFullYear()} ESPOFF Performance. Todos los
             derechos reservados.
           </div>
         </div>
 
-        <div className="relative h-48 w-full shrink-0 overflow-hidden md:h-auto md:w-[45%] md:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]">
+        <div
+          ref={imageRef}
+          style={imageStyle}
+          className="relative h-48 w-full shrink-0 overflow-hidden md:h-auto md:w-[45%] md:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]"
+        >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/images/footer-gti.jpg"

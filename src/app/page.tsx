@@ -1,7 +1,6 @@
 import { Hero } from "@/components/home/hero";
 import { StickyShowcase } from "@/components/home/sticky-showcase";
 import { FeaturedProducts } from "@/components/home/featured-products";
-import { BrandsStrip } from "@/components/home/brands-strip";
 import { GalleryBento } from "@/components/home/gallery-bento";
 
 export default function Home() {
@@ -9,7 +8,6 @@ export default function Home() {
     <>
       <Hero />
       <StickyShowcase />
-      <BrandsStrip />
       <GalleryBento />
       <FeaturedProducts />
     </>

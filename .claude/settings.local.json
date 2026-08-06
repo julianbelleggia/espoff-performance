@@ -25,7 +25,8 @@
       "Bash(mv \"/c/Users/juli/Desktop/esp/public/images/brands/magnaflow-transparent.png\" \"/c/Users/juli/Desktop/esp/public/images/brands/magnaflow.png\")",
       "Bash(node recolor.js)",
       "Bash(curl -sL -o magnaflow.png \"https://cdn.shopify.com/s/files/1/0074/7719/8963/files/magnaflow.png\")",
-      "Bash(curl -s -o /dev/null -w \"%{size_download}\\\\n\" http://localhost:3000/images/brands/magnaflow.png)"
+      "Bash(curl -s -o /dev/null -w \"%{size_download}\\\\n\" http://localhost:3000/images/brands/magnaflow.png)",
+      "Bash(npm install *)"
     ]
   }
 }

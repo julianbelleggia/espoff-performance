@@ -16,8 +16,22 @@ export function Navbar() {
   const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(
     null
   );
-  const [isHovered, setIsHovered] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const logoVideoRef = useRef<HTMLVideoElement>(null);
+
+  const playLogoGlitch = () => {
+    const video = logoVideoRef.current;
+    if (!video) return;
+    video.currentTime = 0;
+    video.play().catch(() => {});
+  };
+
+  const resetLogoGlitch = () => {
+    const video = logoVideoRef.current;
+    if (!video) return;
+    video.pause();
+    video.currentTime = 0;
+  };
 
   useEffect(() => {
     setHidden(window.scrollY > 0);
@@ -38,53 +52,62 @@ export function Navbar() {
 
   return (
     <header
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
       className={cn(
-        "sticky top-0 z-40 will-change-transform transition-transform duration-300 ease-out",
+        "animate-fade-up sticky top-0 z-40 will-change-transform transition-transform duration-300 ease-out",
         hidden ? "-translate-y-full" : "translate-y-0",
-        isHovered || mobileOpen ? "bg-black" : "bg-transparent"
+        mobileOpen ? "bg-black" : "bg-transparent"
       )}
     >
       <Link
         href="/"
         aria-label="Inicio"
-        className="absolute left-2 top-1/2 z-50 -translate-y-1/2"
+        className="group absolute left-2 top-1/2 z-50 -translate-y-1/2"
+        onMouseEnter={playLogoGlitch}
+        onMouseLeave={resetLogoGlitch}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/logo-white.svg"
           alt="Logo"
-          className="h-16 w-16 sm:h-20 sm:w-20"
+          className="h-16 w-16 opacity-100 transition-opacity duration-150 group-hover:opacity-0 sm:h-20 sm:w-20"
+        />
+        <video
+          ref={logoVideoRef}
+          src="/videos/logo-glitch.webm?v=3"
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 h-16 w-16 object-contain opacity-0 transition-opacity duration-150 group-hover:opacity-100 sm:h-20 sm:w-20"
         />
       </Link>
 
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:h-24 sm:px-6 lg:px-8">
-        <nav className="hidden items-center gap-6 pl-16 sm:pl-20 md:flex">
+        <nav className="hidden items-center gap-8 pl-16 font-nav sm:pl-20 md:flex">
           <CatalogDropdown />
 
           <Link
             href="/galeria"
-            className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+            className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 transition-colors hover:text-foreground"
           >
             Galería
           </Link>
           <Link
             href="/nosotros"
-            className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+            className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 transition-colors hover:text-foreground"
           >
             Nosotros
           </Link>
           <Link
             href="/contacto"
-            className="text-sm text-foreground/80 transition-colors hover:text-foreground"
+            className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 transition-colors hover:text-foreground"
           >
             Contacto
           </Link>
         </nav>
       </div>
 
-      <div className="absolute right-2 top-1/2 z-50 flex -translate-y-1/2 items-center gap-2">
+      <div className="absolute right-2 top-0 z-50 flex h-20 items-center gap-2 sm:h-24">
         <CurrencySwitcher />
         <CartSheet />
         <Button

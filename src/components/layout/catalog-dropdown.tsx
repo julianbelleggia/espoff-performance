@@ -85,7 +85,7 @@ export function CatalogDropdown() {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="flex items-center gap-1.5 text-sm text-foreground/80 outline-none transition-colors hover:text-foreground"
+        className="flex items-center gap-1.5 text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 outline-none transition-colors hover:text-foreground"
       >
         Catálogo
         <span
@@ -116,7 +116,7 @@ export function CatalogDropdown() {
                 <button
                   type="button"
                   onClick={() => toggleGroup(item.label)}
-                  className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-[13px] text-foreground/85 transition-colors hover:bg-white/10 hover:text-foreground"
+                  className="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-[13px] uppercase text-foreground/85 transition-colors hover:bg-white/10 hover:text-foreground"
                 >
                   {item.label}
                   <span
@@ -151,7 +151,7 @@ export function CatalogDropdown() {
                         key={child.href}
                         href={child.href}
                         onClick={closeAll}
-                        className="rounded-md px-2.5 py-1.5 text-[12.5px] text-foreground/70 transition-colors hover:bg-white/10 hover:text-foreground"
+                        className="rounded-md px-2.5 py-1.5 text-[12.5px] uppercase text-foreground/70 transition-colors hover:bg-white/10 hover:text-foreground"
                       >
                         {child.label}
                       </Link>
@@ -165,7 +165,7 @@ export function CatalogDropdown() {
                 href={item.href}
                 onClick={closeAll}
                 className={cn(
-                  "rounded-md px-3 py-2 text-[13px] text-foreground/85 transition-colors hover:bg-white/10 hover:text-foreground"
+                  "rounded-md px-3 py-2 text-[13px] uppercase text-foreground/85 transition-colors hover:bg-white/10 hover:text-foreground"
                 )}
               >
                 {item.label}

@@ -1,69 +1,128 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useReveal } from "@/hooks/use-reveal";
 
 const values = [
   {
+    number: "01",
     title: "Marcas originales",
     description:
       "Trabajamos directo con las marcas líderes del mundo del performance: Akrapovič, Milltek, HKS, Brabus y muchas más. Nada de réplicas.",
+    delay: 60,
   },
   {
+    number: "02",
     title: "Asesoramiento real",
     description:
       "Te ayudamos a elegir la pieza correcta para tu modelo, sin vueltas: compatibilidad, terminación e instalación.",
+    delay: 120,
   },
   {
+    number: "03",
     title: "Pasión por el auto",
     description:
       "Somos un equipo de entusiastas del tuning. Cada pieza que vendemos es una que nos gustaría tener en nuestro propio auto.",
+    delay: 180,
   },
 ];
 
-export function StickyShowcase() {
+function ValueRow({
+  number,
+  title,
+  description,
+  delay,
+}: {
+  number: string;
+  title: string;
+  description: string;
+  delay: number;
+}) {
+  const { ref, style } = useReveal<HTMLDivElement>({ delay });
+
   return (
-    <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="grid grid-cols-1 gap-x-12 lg:grid-cols-2">
-        <div className="lg:sticky lg:top-24 lg:h-[calc(100vh-7rem)]">
-          <div className="h-[60vh] overflow-hidden rounded-lg lg:h-full">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/images/gallery/showcase-m240i-g42.jpg"
-              alt="BMW M240i G42"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
+    <div ref={ref} style={style} className="grid grid-cols-[56px_1fr] gap-5">
+      <span className="pt-0.5 font-heading text-[15px] font-light text-white/30">
+        {number}
+      </span>
+      <div>
+        <h3 className="font-hero text-[17px] font-medium uppercase tracking-[0.06em] text-white">
+          {title}
+        </h3>
+        <p className="mt-2.5 max-w-[400px] text-[14.5px] leading-[1.65] text-white/60">
+          {description}
+        </p>
+      </div>
+    </div>
+  );
+}
 
-        <div className="flex flex-col justify-center gap-12 py-16 lg:min-h-[170vh] lg:gap-20 lg:py-0">
-          <div>
-            <span className="text-xs font-medium uppercase tracking-[0.3em] text-primary">
-              Sobre ESPOFF
-            </span>
-            <h2 className="mt-4 font-heading text-3xl font-light uppercase leading-[1.05] tracking-wide sm:text-4xl">
-              Cada pieza,
-              <br />
-              <span className="font-medium">pensada para tu auto</span>
-            </h2>
-          </div>
+export function StickyShowcase() {
+  const { ref: imgRef, style: imgStyle } = useReveal<HTMLDivElement>({
+    y: 0,
+    scale: 1.04,
+    duration: 900,
+  });
+  const { ref: headRef, style: headStyle } = useReveal<HTMLDivElement>({});
+  const { ref: ctaRef, style: ctaStyle } = useReveal<HTMLDivElement>({
+    delay: 240,
+  });
 
-          {values.map((value) => (
-            <div key={value.title} className="border-t border-border/50 pt-4">
-              <h3 className="font-heading text-lg uppercase tracking-wide">
-                {value.title}
-              </h3>
-              <p className="mt-2 max-w-md text-sm text-muted-foreground">
-                {value.description}
-              </p>
+  return (
+    <section className="relative">
+      <div
+        ref={imgRef}
+        style={imgStyle}
+        className="sticky top-0 h-screen w-full overflow-hidden"
+      >
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/gallery/showcase-m135i.jpg"
+          alt="BMW M135i xDrive"
+          className="h-full w-full object-cover"
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(180deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.15) 30%, rgba(0,0,0,.35) 70%, rgba(0,0,0,.75) 100%)",
+          }}
+        />
+        <div className="absolute inset-0 flex items-center px-6 sm:px-10 lg:px-16">
+          <div className="flex max-w-[640px] flex-col justify-center gap-10 sm:gap-14">
+            <div ref={headRef} style={headStyle}>
+              <div className="mb-5 flex items-center gap-3">
+                <span className="block h-px w-8 bg-primary" />
+                <span className="text-[11px] font-medium uppercase tracking-[0.35em] text-primary">
+                  Sobre ESPOFF
+                </span>
+              </div>
+              <h2 className="font-hero text-3xl font-light uppercase leading-[1.08] tracking-wide text-white sm:text-[42px]">
+                Cada pieza,
+                <br />
+                <span className="font-semibold">pensada para tu auto</span>
+              </h2>
             </div>
-          ))}
 
-          <Button asChild size="lg" className="w-fit uppercase tracking-wide">
-            <Link href="/catalogo">
-              Ver catálogo
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </Button>
+            {values.map((value) => (
+              <ValueRow
+                key={value.number}
+                number={value.number}
+                title={value.title}
+                description={value.description}
+                delay={value.delay}
+              />
+            ))}
+
+            <div ref={ctaRef} style={ctaStyle} className="pl-[76px]">
+              <Link
+                href="/catalogo"
+                className="inline-flex items-center gap-2.5 border-b border-white/25 pb-1.5 text-[13px] font-medium uppercase tracking-[0.1em] text-white transition-colors hover:border-white/50"
+              >
+                Ver catálogo <span className="text-primary">→</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

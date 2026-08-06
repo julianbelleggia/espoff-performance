@@ -9,6 +9,7 @@ export const catalogLinks = [
   { label: "Insignias", href: "/catalogo/insignias" },
   { label: "Cubre Espejos", href: "/catalogo/cubre-espejos" },
   { label: "Llantas", href: "/catalogo/llantas" },
+  { label: "PPF", href: "/catalogo/ppf" },
   {
     label: "Servicios",
     children: [

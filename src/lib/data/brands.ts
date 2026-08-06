@@ -28,6 +28,9 @@ export const brands: Brand[] = [
   { id: "brand-sterckenn", slug: "sterckenn", name: "Sterckenn", origin: "Países Bajos" },
   { id: "brand-alpha-n", slug: "alpha-n", name: "Alpha-N", origin: "Alemania" },
   { id: "brand-sq", slug: "sq", name: "SQ", origin: "Reino Unido" },
+  { id: "brand-carpro", slug: "carpro", name: "CarPro", origin: "Corea del Sur" },
+  { id: "brand-scorpion-exhausts", slug: "scorpion-exhausts", name: "Scorpion Exhausts", origin: "Reino Unido" },
+  { id: "brand-supersprint", slug: "supersprint", name: "Supersprint", origin: "Italia" },
 ];
 
 export function getBrandBySlug(slug: string) {

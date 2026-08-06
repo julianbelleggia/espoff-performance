@@ -10,7 +10,7 @@ import { CatalogView } from "@/components/catalog/catalog-view";
 import { products } from "@/lib/data/products";
 
 export const metadata = {
-  title: "Catálogo | Apex Performance",
+  title: "Catálogo | ESPOFF Performance",
 };
 
 export default function CatalogoPage() {

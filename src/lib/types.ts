@@ -16,7 +16,8 @@ export type CategoryIcon =
   | "badge"
   | "mirror"
   | "tip"
-  | "rim";
+  | "rim"
+  | "film";
 
 export type Brand = {
   id: string;

@@ -71,6 +71,13 @@ export const categories: Category[] = [
     description: "Llantas de aleación OZ Racing en fundición y forja, disponibles en múltiples colores y diámetros.",
     icon: "rim",
   },
+  {
+    id: "cat-ppf",
+    slug: "ppf",
+    name: "PPF",
+    description: "Láminas de protección de pintura autorreparables, polarizados nanocerámicos y herramientas de instalación.",
+    icon: "film",
+  },
 ];
 
 export function getCategoryBySlug(slug: string) {

@@ -7,9 +7,11 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-montserrat);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-heading);
+  --font-heading: var(--font-montserrat);
+  --font-nav: var(--font-nav);
+  --font-hero: var(--font-montserrat);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -164,8 +166,32 @@
     animation: blink 1s step-end infinite;
   }
 
+  .animate-scroll-bounce {
+    animation: scroll-bounce 1.8s ease-in-out infinite;
+  }
+
   .animate-marquee {
     animation: marquee-scroll linear infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.15s both;
+  }
+
+  .animate-stage-reveal {
+    animation: stage-reveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .animate-word-in-left {
+    animation: word-in-left 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+  }
+
+  .animate-breathe {
+    animation: breathe 2.2s ease-in-out infinite;
+  }
+
+  .animate-fade-up-cue {
+    animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
   }
 
   .marquee-mask {
@@ -195,6 +221,51 @@
   }
 }
 
+@keyframes fade-up {
+  from {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes stage-reveal {
+  from {
+    clip-path: inset(34% 33% 34% 33% round 18px);
+    transform: scale(1.14);
+  }
+  to {
+    clip-path: inset(0% 0% 0% 0% round 0px);
+    transform: scale(1);
+  }
+}
+
+@keyframes word-in-left {
+  from {
+    transform: translateX(26vw);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 1;
+  }
+}
+
 @keyframes blink {
   0%,
   45% {
@@ -205,6 +276,56 @@
     opacity: 0;
   }
   100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(26px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes clip-up {
+  from {
+    clip-path: inset(105% 0 0 0);
+  }
+  to {
+    clip-path: inset(-20% 0 0 0);
+  }
+}
+
+@keyframes hair {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes plate {
+  from {
+    transform: rotate(-2.4deg) translateY(44px) scale(0.96);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(-2.4deg) translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
     opacity: 1;
   }
 }
