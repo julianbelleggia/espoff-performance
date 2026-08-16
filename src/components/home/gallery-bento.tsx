@@ -95,17 +95,8 @@ export function GalleryBento() {
                 alt="BMW i8"
                 className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-              <div className="absolute inset-x-6 bottom-6 flex items-end justify-between gap-4">
-                <div>
-                  <h3 className="font-hero text-2xl uppercase tracking-wide text-white">
-                    Proyectos en Acción
-                  </h3>
-                  <p className="mt-2 max-w-md text-sm leading-relaxed text-white/85">
-                    Descubrí cómo llevamos autos al siguiente nivel con
-                    estética y rendimiento a medida.
-                  </p>
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+              <div className="absolute inset-x-0 bottom-6 flex justify-center">
                 <span className="inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded bg-white px-5 text-xs font-semibold uppercase tracking-wide text-black">
                   Ver Galería
                 </span>

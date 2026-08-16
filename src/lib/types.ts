@@ -17,7 +17,12 @@ export type CategoryIcon =
   | "mirror"
   | "tip"
   | "rim"
-  | "film";
+  | "film"
+  | "spring"
+  | "damper"
+  | "swaybar"
+  | "spacer"
+  | "alignment";
 
 export type Brand = {
   id: string;

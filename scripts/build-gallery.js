@@ -21,14 +21,16 @@ const cars = [
   { slug: "volkswagen-scirocco", name: "Volkswagen Scirocco", dir: "Volkswagen Scirocco", sample: 10 },
   { slug: "bmw-220i", name: "BMW 220i", dir: "bmw 220i -20260716T224511Z-1-001/bmw 220i/fotos editadas", sample: 10 },
   { slug: "vw-up-pepper", name: "Volkswagen Up! Pepper", dir: "vw up pepper-20260716T224507Z-1-001/vw up pepper/fotos up", sample: 12 },
+  { slug: "vento-gli", name: "Volkswagen Vento GLI", dir: "Vento GLI/Feed" },
 ];
 
 function listImages(dir) {
   return fs
     .readdirSync(dir, { withFileTypes: true })
     .filter((e) => e.isFile() && /\.(jpe?g|png)$/i.test(e.name))
-    .map((e) => path.join(dir, e.name))
-    .sort();
+    .map((e) => e.name)
+    .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+    .map((name) => path.join(dir, name));
 }
 
 function evenSample(arr, n) {
@@ -54,8 +56,8 @@ async function run() {
       const outName = `${i + 1}.jpg`;
       const outPath = path.join(outDir, outName);
       await sharp(files[i])
-        .resize({ width: 1400, withoutEnlargement: true })
-        .jpeg({ quality: 76, mozjpeg: true })
+        .resize({ width: 2000, withoutEnlargement: true })
+        .jpeg({ quality: 88, mozjpeg: true })
         .toFile(outPath);
       photos.push(`/images/galeria/${car.slug}/${outName}`);
     }

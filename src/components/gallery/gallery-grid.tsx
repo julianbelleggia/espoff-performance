@@ -43,62 +43,34 @@ export function GalleryGrid({ cars }: { cars: GalleryCar[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(min(100%,300px),1fr))] border-l border-white/[0.14]">
-        {cars.map((car) => {
-          const hasVideo = !!car.videos && car.videos.length > 0;
-          const meta = hasVideo
-            ? `${car.photos.length} fotos · ${car.videos!.length} ${car.videos!.length === 1 ? "video" : "videos"}`
-            : `${car.photos.length} fotos`;
-
-          return (
-            <button
-              key={car.slug}
-              type="button"
-              onClick={() => {
-                setOpenSlug(car.slug);
-                setPhotoIndex(0);
-              }}
-              className="group relative block border-b border-r border-white/[0.14] text-left text-white"
-            >
-              <div className="relative aspect-[4/3] overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={car.photos[0]}
-                  alt={car.name}
-                  loading="lazy"
-                  className="block h-full w-full object-cover transition-[filter,transform] duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] [filter:grayscale(1)_contrast(1.12)_brightness(0.72)] group-hover:scale-[1.05] group-hover:[filter:grayscale(0)_contrast(1.05)_brightness(0.95)]"
-                />
-                <div
-                  className="pointer-events-none absolute inset-0"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(to top, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.1) 55%, transparent 100%)",
-                  }}
-                />
-                {hasVideo && (
-                  <span className="pointer-events-none absolute right-3.5 top-3.5 flex h-[30px] w-[30px] items-center justify-center rounded-full border border-white/35 text-white">
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </span>
-                )}
-              </div>
-              <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 px-5 py-[18px]">
-                <span className="flex min-w-0 flex-col gap-[7px]">
-                  <span className="font-hero text-[17px] font-extrabold uppercase tracking-[-0.015em] text-white">
-                    {car.name}
-                  </span>
-                  <span className="font-nav text-[10px] uppercase tracking-[0.18em] text-white/55">
-                    {meta}
-                  </span>
-                </span>
-                <span aria-hidden="true" className="font-nav text-[13px] text-primary">
-                  →
-                </span>
-              </div>
-            </button>
-          );
-        })}
+      <div className="grid grid-cols-1 gap-x-9 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+        {cars.map((car) => (
+          <button
+            key={car.slug}
+            type="button"
+            onClick={() => {
+              setOpenSlug(car.slug);
+              setPhotoIndex(0);
+            }}
+            className="group flex flex-col gap-[18px] text-left text-white"
+          >
+            <div className="relative overflow-hidden bg-[oklch(0.11_0.003_80)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={car.photos[0]}
+                alt={car.name}
+                loading="lazy"
+                className="block aspect-[4/3] w-full object-cover [filter:saturate(0.95)_contrast(1.03)] transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+              />
+              <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.09)]" />
+            </div>
+            <div className="flex items-baseline border-b border-white/[0.09] pb-4">
+              <span className="text-[15px] font-bold uppercase tracking-[0.01em] text-white/92">
+                {car.name}
+              </span>
+            </div>
+          </button>
+        ))}
       </div>
 
       {openCar &&

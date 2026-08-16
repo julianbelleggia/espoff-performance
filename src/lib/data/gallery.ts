@@ -92,4 +92,9 @@ export const galleryCars: GalleryCar[] = [
     name: "Volkswagen Up! Pepper",
     photos: Array.from({ length: 12 }, (_, i) => `/images/galeria/vw-up-pepper/${i + 1}.jpg`),
   },
+  {
+    slug: "vento-gli",
+    name: "Volkswagen Vento GLI",
+    photos: Array.from({ length: 10 }, (_, i) => `/images/galeria/vento-gli/${i + 1}.jpg`),
+  },
 ];

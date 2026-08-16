@@ -1,6 +1,6 @@
 import { Hero } from "@/components/home/hero";
 import { StickyShowcase } from "@/components/home/sticky-showcase";
-import { FeaturedProducts } from "@/components/home/featured-products";
+import { InteriorCarousel } from "@/components/home/interior-carousel";
 import { GalleryBento } from "@/components/home/gallery-bento";
 
 export default function Home() {
@@ -9,7 +9,7 @@ export default function Home() {
       <Hero />
       <StickyShowcase />
       <GalleryBento />
-      <FeaturedProducts />
+      <InteriorCarousel />
     </>
   );
 }

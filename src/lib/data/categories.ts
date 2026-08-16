@@ -78,6 +78,41 @@ export const categories: Category[] = [
     description: "Láminas de protección de pintura autorreparables, polarizados nanocerámicos y herramientas de instalación.",
     icon: "film",
   },
+  {
+    id: "cat-espirales",
+    slug: "espirales",
+    name: "Espirales",
+    description: "Espirales de suspensión Eibach para rebaje, uso deportivo o competición.",
+    icon: "spring",
+  },
+  {
+    id: "cat-amortiguadores",
+    slug: "amortiguadores",
+    name: "Amortiguadores",
+    description: "Amortiguadores de performance a medida de las espirales Eibach.",
+    icon: "damper",
+  },
+  {
+    id: "cat-barras-estabilizadoras",
+    slug: "barras-estabilizadoras",
+    name: "Barras Estabilizadoras",
+    description: "Barras antivuelco y bieletas ajustables Eibach para reducir el balanceo de carrocería.",
+    icon: "swaybar",
+  },
+  {
+    id: "cat-separadores-rueda",
+    slug: "separadores-rueda",
+    name: "Separadores de Rueda",
+    description: "Separadores de rueda Eibach en aleación de aluminio de alta resistencia.",
+    icon: "spacer",
+  },
+  {
+    id: "cat-alineacion",
+    slug: "alineacion",
+    name: "Alineación",
+    description: "Componentes de suspensión ajustables Eibach para corregir camber y afinar la alineación.",
+    icon: "alignment",
+  },
 ];
 
 export function getCategoryBySlug(slug: string) {

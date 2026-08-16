@@ -53,7 +53,7 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "animate-fade-up sticky top-0 z-40 will-change-transform transition-transform duration-300 ease-out",
+        "animate-fade-up sticky top-0 z-40 transition-transform duration-300 ease-out",
         hidden ? "-translate-y-full" : "translate-y-0",
         mobileOpen ? "bg-black" : "bg-transparent"
       )}

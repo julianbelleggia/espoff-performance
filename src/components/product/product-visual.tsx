@@ -1,4 +1,4 @@
-import { Wind, Disc3, PanelBottom, Rows3, Flame, Car, Sticker, MirrorRectangular, CircleDot, CircleDashed, Layers } from "lucide-react";
+import { Wind, Disc3, PanelBottom, Rows3, Flame, Car, Sticker, MirrorRectangular, CircleDot, CircleDashed, Layers, ChevronsDownUp, Cylinder, GitCommitHorizontal, AlignVerticalSpaceBetween, Crosshair } from "lucide-react";
 import type { CategoryIcon } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -14,6 +14,11 @@ const ICONS: Record<CategoryIcon, typeof Wind> = {
   tip: CircleDot,
   rim: CircleDashed,
   film: Layers,
+  spring: ChevronsDownUp,
+  damper: Cylinder,
+  swaybar: GitCommitHorizontal,
+  spacer: AlignVerticalSpaceBetween,
+  alignment: Crosshair,
 };
 
 export function ProductVisual({

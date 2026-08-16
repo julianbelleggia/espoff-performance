@@ -31,115 +31,11 @@ const facts = [
   { k: "Taller", v: "Buenos Aires" },
 ];
 
-const tickerItems = Array.from({ length: 12 });
-
 export default function ContactoPage() {
   return (
     <section className="relative min-h-screen overflow-hidden bg-background">
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "repeating-linear-gradient(to right, rgba(255,255,255,0.045) 0 1px, transparent 1px 12.5%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage:
-            "radial-gradient(ellipse 70% 50% at 0% 100%, rgba(255,255,255,0.05) 0%, transparent 65%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.28] mix-blend-overlay"
-        style={{
-          backgroundImage:
-            "url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"140\" height=\"140\"><filter id=\"n\"><feTurbulence type=\"fractalNoise\" baseFrequency=\"0.85\" numOctaves=\"3\"/></filter><rect width=\"140\" height=\"140\" filter=\"url(%23n)\" opacity=\"0.5\"/></svg>')",
-        }}
-      />
-
-      <div
-        className="pointer-events-none absolute left-[22px] top-1/2 hidden -translate-y-1/2 rotate-180 font-nav text-[10px] uppercase tracking-[0.42em] text-white/30 lg:block"
-        style={{ writingMode: "vertical-rl" }}
-      >
-        Espoff Performance — Buenos Aires
-      </div>
-
       <div className="relative mx-auto max-w-[1440px] px-6 pb-24 pt-16 sm:px-10 lg:pl-[88px] lg:pr-12">
-        <nav
-          aria-label="Ruta"
-          className="flex items-center gap-3 font-nav text-[10px] uppercase tracking-[0.26em] text-white/40"
-          style={{ animation: "rise 0.7s cubic-bezier(0.16,1,0.3,1) both" }}
-        >
-          <Link href="/" className="transition-colors hover:text-white">
-            Inicio
-          </Link>
-          <span className="text-primary">—</span>
-          <span className="text-white/85">Contacto</span>
-        </nav>
-
-        <div className="relative mt-11 @container">
-          <h1 className="m-0 font-hero font-black uppercase leading-[0.82] tracking-[-0.05em] text-white">
-            <span className="block overflow-hidden">
-              <span
-                className="block text-[min(21cqw,216px)]"
-                style={{
-                  animation: "clip-up 1.1s cubic-bezier(0.16,1,0.3,1) 0.1s both",
-                }}
-              >
-                Contac
-              </span>
-            </span>
-            <span className="block overflow-hidden">
-              <span
-                className="flex items-baseline gap-[0.06em] text-[min(21cqw,216px)]"
-                style={{
-                  animation:
-                    "clip-up 1.1s cubic-bezier(0.16,1,0.3,1) 0.24s both",
-                }}
-              >
-                <span
-                  style={{
-                    color: "transparent",
-                    WebkitTextStroke: "1.5px rgba(255,255,255,0.55)",
-                  }}
-                >
-                  tate
-                </span>
-                <span className="text-primary">.</span>
-              </span>
-            </span>
-          </h1>
-
-          <div
-            className="absolute -right-2 -top-3 hidden w-[min(30cqw,300px)] min-[1360px]:block"
-            style={{
-              animation: "plate 1.2s cubic-bezier(0.16,1,0.3,1) 0.4s both",
-            }}
-          >
-            <div className="relative overflow-hidden shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9)]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/gallery/showcase-m240i-g42.jpg"
-                alt="Proyecto ESPOFF Performance"
-                className="block aspect-[4/5] w-full object-cover"
-                style={{ filter: "grayscale(1) contrast(1.15) brightness(0.78)" }}
-              />
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(200deg, rgba(200,32,32,0.28) 0%, transparent 55%)",
-                }}
-              />
-              <div className="absolute bottom-0 left-0 bg-primary px-3 py-2 font-nav text-[9px] uppercase tracking-[0.22em] text-white">
-                Proyecto 240i
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-[76px] grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-start gap-x-[72px] gap-y-14">
+        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-start gap-x-[72px] gap-y-14">
           <div
             className="min-w-0 @container"
             style={{ animation: "rise 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both" }}
@@ -183,7 +79,7 @@ export default function ContactoPage() {
                       {ch.value}
                     </span>
                   </span>
-                  <span className="flex h-[46px] w-[46px] shrink-0 items-center justify-center border border-white/20 text-white/70 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:border-primary group-hover:bg-primary group-hover:text-white">
+                  <span className="flex h-[46px] w-[46px] shrink-0 items-center justify-center border border-white/20 text-white/70 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground">
                     <ArrowRight className="h-[17px] w-[17px]" strokeWidth={1.6} />
                   </span>
                 </a>
@@ -195,11 +91,14 @@ export default function ContactoPage() {
             className="min-w-0"
             style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.7s both" }}
           >
-            <div className="grid grid-cols-2 border-l border-t border-white/[0.14]">
+            <p className="m-0 mb-5 font-nav text-[9px] uppercase tracking-[0.26em] text-white/35">
+              Datos útiles
+            </p>
+            <div className="grid grid-cols-2 gap-x-9">
               {facts.map((f) => (
                 <div
                   key={f.k}
-                  className="flex flex-col gap-3 border-b border-r border-white/[0.14] px-[22px] py-[26px]"
+                  className="flex flex-col gap-3 border-t border-white/[0.14] py-[26px]"
                 >
                   <span className="font-nav text-[9px] uppercase tracking-[0.26em] text-white/35">
                     {f.k}
@@ -211,6 +110,17 @@ export default function ContactoPage() {
               ))}
             </div>
 
+            <div className="mt-11 relative overflow-hidden">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/gallery/g-m340i.jpg"
+                alt="Taller ESPOFF Performance"
+                className="block aspect-[16/10] w-full object-cover"
+                style={{ filter: "saturate(0.9) contrast(1.03) brightness(0.9)" }}
+              />
+              <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.09)]" />
+            </div>
+
             <div className="mt-[26px] flex items-center gap-3 font-nav text-[10px] uppercase tracking-[0.24em] text-white/40">
               <span className="animate-breathe inline-block h-1.5 w-1.5 bg-primary" />
               Respondiendo consultas ahora
@@ -218,29 +128,6 @@ export default function ContactoPage() {
           </div>
         </div>
       </div>
-
-      <a
-        href={WHATSAPP_HREF}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Escribinos por WhatsApp"
-        className="relative mt-[88px] block overflow-hidden bg-primary py-[22px] text-white transition-colors hover:bg-primary/85"
-      >
-        <div
-          className="animate-marquee flex w-max items-center gap-[34px]"
-          style={{ animationDuration: "26s" }}
-        >
-          {[...tickerItems, ...tickerItems].map((_, i) => (
-            <span
-              key={i}
-              className="flex items-center gap-[34px] whitespace-nowrap font-hero text-xl font-extrabold uppercase tracking-wide"
-            >
-              Escribinos ahora
-              <span className="font-nav text-sm font-normal opacity-70">/</span>
-            </span>
-          ))}
-        </div>
-      </a>
     </section>
   );
 }

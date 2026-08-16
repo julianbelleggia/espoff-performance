@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Montserrat, Space_Mono } from "next/font/google";
+import {
+  Cormorant_Garamond,
+  Geist_Mono,
+  Montserrat,
+  Space_Mono,
+} from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/hooks/use-cart";
 import { CurrencyProvider } from "@/hooks/use-currency";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
+import { SmoothScroll } from "@/components/providers/smooth-scroll";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -23,6 +29,13 @@ const spaceMono = Space_Mono({
   weight: ["400", "700"],
 });
 
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  style: ["italic", "normal"],
+});
+
 export const metadata: Metadata = {
   title: "ESPOFF Performance",
   description:
@@ -37,9 +50,10 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${montserrat.variable} ${geistMono.variable} ${spaceMono.variable} dark h-full antialiased`}
+      className={`${montserrat.variable} ${geistMono.variable} ${spaceMono.variable} ${cormorantGaramond.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <SmoothScroll />
         <CurrencyProvider>
           <CartProvider>
             <Navbar />
