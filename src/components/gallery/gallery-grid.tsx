@@ -65,7 +65,7 @@ export function GalleryGrid({ cars }: { cars: GalleryCar[] }) {
               <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.09)]" />
             </div>
             <div className="flex items-baseline border-b border-white/[0.09] pb-4">
-              <span className="text-[15px] font-bold uppercase tracking-[0.01em] text-white/92">
+              <span className="text-[15px] font-bold normal-case tracking-[0.01em] text-white/92">
                 {car.name}
               </span>
             </div>
@@ -78,7 +78,7 @@ export function GalleryGrid({ cars }: { cars: GalleryCar[] }) {
           <div className="fixed inset-0 z-50 flex flex-col bg-black/95">
           <div className="flex items-center justify-between px-4 py-4 sm:px-6">
             <div>
-              <p className="font-hero text-sm font-bold uppercase tracking-wide text-white sm:text-base">
+              <p className="font-hero text-sm font-bold normal-case tracking-wide text-white sm:text-base">
                 {openCar.name}
               </p>
               <p className="text-xs text-white/60">

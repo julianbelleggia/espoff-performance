@@ -1,0 +1,107 @@
+"use client";
+
+import { useEffect, useRef, type CSSProperties } from "react";
+import { cn } from "@/lib/utils";
+
+const FADE_SECONDS = 0.9;
+
+export function VideoLoopFade({
+  src,
+  poster,
+  className,
+  style,
+  loopOutSeconds,
+}: {
+  src: string;
+  poster?: string;
+  className?: string;
+  style?: CSSProperties;
+  /** Restart the loop this many seconds in, instead of waiting for the clip's natural end. */
+  loopOutSeconds?: number;
+}) {
+  const videoARef = useRef<HTMLVideoElement>(null);
+  const videoBRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const a = videoARef.current;
+    const b = videoBRef.current;
+    if (!a || !b) return;
+
+    [a, b].forEach((v) => {
+      v.loop = false;
+      v.muted = true;
+      v.playsInline = true;
+    });
+
+    let active = a;
+    let idle = b;
+    a.style.opacity = "1";
+    b.style.opacity = "0";
+
+    const start = () => active.play().catch(() => {});
+    start();
+    a.addEventListener("canplay", start);
+    document.addEventListener("pointerdown", start, { once: true });
+
+    let swapping = false;
+    let swapTimeout: ReturnType<typeof setTimeout>;
+    const swap = () => {
+      if (swapping) return;
+      swapping = true;
+      const next = idle;
+      const cur = active;
+      next.currentTime = 0;
+      next.play().catch(() => {});
+      next.style.transition = `opacity ${FADE_SECONDS}s linear`;
+      cur.style.transition = `opacity ${FADE_SECONDS}s linear`;
+      next.style.opacity = "1";
+      cur.style.opacity = "0";
+      active = next;
+      idle = cur;
+      swapTimeout = setTimeout(() => {
+        cur.pause();
+        cur.currentTime = 0;
+        swapping = false;
+      }, FADE_SECONDS * 1000);
+    };
+
+    let raf: number;
+    const tick = () => {
+      const v = active;
+      const d = loopOutSeconds ?? v.duration;
+      if (d && d - v.currentTime <= FADE_SECONDS) swap();
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(swapTimeout);
+      a.removeEventListener("canplay", start);
+      document.removeEventListener("pointerdown", start);
+    };
+  }, []);
+
+  return (
+    <>
+      <video
+        ref={videoARef}
+        src={src}
+        poster={poster}
+        autoPlay
+        muted
+        playsInline
+        className={className}
+        style={style}
+      />
+      <video
+        ref={videoBRef}
+        src={src}
+        muted
+        playsInline
+        className={cn(className, "opacity-0")}
+        style={style}
+      />
+    </>
+  );
+}

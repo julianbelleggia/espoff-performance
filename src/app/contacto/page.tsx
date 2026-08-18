@@ -1,133 +1,129 @@
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { socials } from "@/lib/data/socials";
 
 export const metadata = {
   title: "Contacto | ESPOFF Performance",
 };
 
-const WHATSAPP_HREF =
-  "https://api.whatsapp.com/send/?phone=541139541545&text=%C2%A1Hola%21%20%C2%BFC%C3%B3mo%20est%C3%A1s%3F%20Me%20comunico%20desde%20Esp%20Off%20Performance";
-const INSTAGRAM_HREF = "https://www.instagram.com/espoff.performance/";
 const EMAIL = "espoffperformance@gmail.com";
+
+const whatsapp = socials.find((s) => s.name === "WhatsApp")!;
+const instagram = socials.find((s) => s.name === "Instagram")!;
 
 const channels = [
   {
     label: "WhatsApp",
-    value: "+54 11 3954 1545 · respuesta en el día",
-    href: WHATSAPP_HREF,
+    href: whatsapp.href,
+    icon: (
+      <svg viewBox="0 0 448 512" fill="currentColor" className="h-6 w-6">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" />
+      </svg>
+    ),
   },
-  { label: "Email", value: EMAIL, href: `mailto:${EMAIL}` },
+  {
+    label: "Email",
+    href: `mailto:${EMAIL}`,
+    icon: (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="h-6 w-6"
+      >
+        <rect x="2.5" y="5" width="19" height="14" rx="2" />
+        <path d="m3 7 9 6 9-6" />
+      </svg>
+    ),
+  },
   {
     label: "Instagram",
-    value: "@espoff.performance · DM abierto",
-    href: INSTAGRAM_HREF,
+    href: instagram.href,
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+        <rect
+          x="3"
+          y="3"
+          width="18"
+          height="18"
+          rx="5"
+          stroke="currentColor"
+          strokeWidth="2"
+        />
+        <circle cx="12" cy="12" r="4.2" stroke="currentColor" strokeWidth="2" />
+        <circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" />
+      </svg>
+    ),
   },
-];
-
-const facts = [
-  { k: "Horario", v: "Lun a Vie 9—18" },
-  { k: "Envíos", v: "Todo el país" },
-  { k: "Asesoría", v: "Sin cargo" },
-  { k: "Taller", v: "Buenos Aires" },
 ];
 
 export default function ContactoPage() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-background">
-      <div className="relative mx-auto max-w-[1440px] px-6 pb-24 pt-16 sm:px-10 lg:pl-[88px] lg:pr-12">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-start gap-x-[72px] gap-y-14">
-          <div
-            className="min-w-0 @container"
-            style={{ animation: "rise 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both" }}
-          >
-            <p className="m-0 max-w-[42ch] text-lg font-light leading-[1.72] text-white/60">
-              Cada proyecto arranca con una conversación. Contanos qué buscás
-              —compatibilidad, stock, tiempos de instalación— y te
-              asesoramos con criterio antes de que gastes un peso.
-            </p>
-
-            <div
-              className="mt-[52px] flex flex-col"
-              style={{
-                animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.6s both",
-              }}
-            >
-              <div
-                className="h-px origin-left bg-white/[0.14]"
-                style={{
-                  animation:
-                    "hair 0.9s cubic-bezier(0.16,1,0.3,1) 0.66s both",
-                }}
-              />
-              {channels.map((ch) => (
-                <a
-                  key={ch.label}
-                  href={ch.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative grid grid-cols-[minmax(0,1fr)_auto] items-center gap-5 border-b border-white/[0.14] px-1.5 py-6 text-white transition-[padding-left] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:pl-[22px]"
+    <>
+      <section className="relative -mt-20 h-[min(92vh,860px)] min-h-[520px] w-full overflow-hidden bg-black sm:-mt-24">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/contacto-hero.jpg"
+          alt="BMW M240i preparado por ESPOFF Performance"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ filter: "saturate(0.92) contrast(1.05) brightness(0.82)" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(to bottom, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.34) 34%, rgba(10,10,10,0.5) 68%, oklch(0.08 0 0) 100%)",
+          }}
+        >
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-[26px] px-6 pb-[200px] pt-24 text-center">
+            <h1 className="m-0 max-w-[15ch] text-balance font-hero text-[clamp(2.75rem,9.2vw,70px)] font-black uppercase leading-[1.1] tracking-[-0.045em] text-white">
+              <span className="block overflow-hidden py-[0.08em]">
+                <span
+                  className="block"
+                  style={{
+                    animation:
+                      "clip-up 1.15s cubic-bezier(0.16,1,0.3,1) 0.2s both",
+                  }}
                 >
-                  <span
-                    aria-hidden="true"
-                    className="absolute inset-y-0 left-0 w-[3px] origin-bottom scale-y-0 bg-primary transition-transform duration-[450ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-y-100"
-                  />
-                  <span className="flex min-w-0 flex-col gap-2">
-                    <span className="font-hero text-[min(6cqw,34px)] font-extrabold uppercase tracking-[-0.03em] text-white">
-                      {ch.label}
-                    </span>
-                    <span className="font-nav text-xs tracking-wide text-white/45">
-                      {ch.value}
-                    </span>
-                  </span>
-                  <span className="flex h-[46px] w-[46px] shrink-0 items-center justify-center border border-white/20 text-white/70 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1 group-hover:border-primary group-hover:bg-primary group-hover:text-primary-foreground">
-                    <ArrowRight className="h-[17px] w-[17px]" strokeWidth={1.6} />
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <div
-            className="min-w-0"
-            style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.7s both" }}
-          >
-            <p className="m-0 mb-5 font-nav text-[9px] uppercase tracking-[0.26em] text-white/35">
-              Datos útiles
-            </p>
-            <div className="grid grid-cols-2 gap-x-9">
-              {facts.map((f) => (
-                <div
-                  key={f.k}
-                  className="flex flex-col gap-3 border-t border-white/[0.14] py-[26px]"
+                  ¿Queres armar
+                </span>
+                <span
+                  className="block"
+                  style={{
+                    animation:
+                      "clip-up 1.15s cubic-bezier(0.16,1,0.3,1) 0.34s both",
+                  }}
                 >
-                  <span className="font-nav text-[9px] uppercase tracking-[0.26em] text-white/35">
-                    {f.k}
-                  </span>
-                  <span className="font-hero text-[17px] font-bold uppercase tracking-[-0.01em] text-white">
-                    {f.v}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-11 relative overflow-hidden">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/images/gallery/g-m340i.jpg"
-                alt="Taller ESPOFF Performance"
-                className="block aspect-[16/10] w-full object-cover"
-                style={{ filter: "saturate(0.9) contrast(1.03) brightness(0.9)" }}
-              />
-              <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.09)]" />
-            </div>
-
-            <div className="mt-[26px] flex items-center gap-3 font-nav text-[10px] uppercase tracking-[0.24em] text-white/40">
-              <span className="animate-breathe inline-block h-1.5 w-1.5 bg-primary" />
-              Respondiendo consultas ahora
-            </div>
+                  tu auto?
+                </span>
+              </span>
+            </h1>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="mx-auto max-w-[1100px] px-6 pb-[132px]">
+        <div
+          className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))]"
+          style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.8s both" }}
+        >
+          {channels.map((ch) => (
+            <a
+              key={ch.label}
+              href={ch.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-[18px] px-2 py-11 text-center text-white transition-colors duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-primary"
+            >
+              {ch.icon}
+              <span className="font-nav pl-[0.13em] text-[11px] uppercase tracking-[0.26em]">
+                {ch.label}
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

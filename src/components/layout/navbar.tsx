@@ -87,10 +87,10 @@ export function Navbar() {
           <CatalogDropdown />
 
           <Link
-            href="/galeria"
+            href="/proyectos"
             className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 transition-colors hover:text-foreground"
           >
-            Galería
+            Proyectos
           </Link>
           <Link
             href="/nosotros"
@@ -194,11 +194,11 @@ export function Navbar() {
           )}
 
           <Link
-            href="/galeria"
+            href="/proyectos"
             className="py-2 text-sm text-foreground/80"
             onClick={closeMobileMenu}
           >
-            Galería
+            Proyectos
           </Link>
           <Link
             href="/nosotros"

@@ -86,7 +86,7 @@ export function GalleryBento() {
             className="col-start-2 row-start-1 row-span-2"
           >
             <Link
-              href="/galeria"
+              href="/proyectos"
               className="group relative block h-full w-full overflow-hidden rounded"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -98,7 +98,7 @@ export function GalleryBento() {
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-6 flex justify-center">
                 <span className="inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded bg-white px-5 text-xs font-semibold uppercase tracking-wide text-black">
-                  Ver Galería
+                  Ver Proyectos
                 </span>
               </div>
             </Link>

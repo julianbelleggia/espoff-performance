@@ -1,109 +1,96 @@
-import Link from "next/link";
-import { categories } from "@/lib/data/categories";
-import { partnerBrands } from "@/lib/data/partner-brands";
+import type { Metadata } from "next";
+import { VideoLoopFade } from "@/components/video-loop-fade";
+import { WorkPhotosCarousel } from "@/components/nosotros/work-photos-carousel";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Nosotros | ESPOFF Performance",
 };
 
-const values = [
-  {
-    title: "Marcas originales",
-    description:
-      "Directo con las marcas líderes del performance: Akrapovič, Milltek, HKS, Brabus y muchas más. Nada de réplicas.",
-  },
-  {
-    title: "Asesoramiento real",
-    description:
-      "Te ayudamos a elegir la pieza correcta para tu modelo: compatibilidad, terminación e instalación.",
-  },
-  {
-    title: "Pasión por el auto",
-    description:
-      "Somos entusiastas del tuning. Cada pieza que vendemos es una que nos gustaría tener en nuestro propio auto.",
-  },
+const workPhotos = [
+  ...Array.from({ length: 3 }, (_, i) => ({
+    src: `/images/nosotros/audi-rsq8-0${i + 1}.jpg`,
+    alt: `Audi RSQ8 preparado por ESPOFF Performance`,
+  })),
+  ...Array.from({ length: 3 }, (_, i) => ({
+    src: `/images/nosotros/bmw-220i-0${i + 1}.jpg`,
+    alt: `BMW 220i preparado por ESPOFF Performance`,
+  })),
+  ...Array.from({ length: 3 }, (_, i) => ({
+    src: `/images/nosotros/bmw-m135i-0${i + 1}.jpg`,
+    alt: `BMW M135i xDrive preparado por ESPOFF Performance`,
+  })),
+  ...Array.from({ length: 3 }, (_, i) => ({
+    src: `/images/nosotros/bmw-m340i-0${i + 1}.jpg`,
+    alt: `BMW M340i xDrive preparado por ESPOFF Performance`,
+  })),
+  ...Array.from({ length: 3 }, (_, i) => ({
+    src: `/images/nosotros/toyota-corolla-0${i + 1}.jpg`,
+    alt: `Toyota Corolla preparado por ESPOFF Performance`,
+  })),
+  ...Array.from({ length: 3 }, (_, i) => ({
+    src: `/images/nosotros/vw-polo-gts-0${i + 1}.jpg`,
+    alt: `Volkswagen Polo GTS preparado por ESPOFF Performance`,
+  })),
+  ...Array.from({ length: 3 }, (_, i) => ({
+    src: `/images/nosotros/vw-scirocco-0${i + 1}.jpg`,
+    alt: `Volkswagen Scirocco preparado por ESPOFF Performance`,
+  })),
+  ...Array.from({ length: 3 }, (_, i) => ({
+    src: `/images/nosotros/vw-up-pepper-0${i + 1}.jpg`,
+    alt: `Volkswagen up! Pepper preparado por ESPOFF Performance`,
+  })),
 ];
 
 export default function NosotrosPage() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-background">
-      <div className="relative mx-auto max-w-[1440px] px-6 pb-24 pt-16 sm:px-10 lg:pl-[88px] lg:pr-12">
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,380px),1fr))] items-start gap-x-[72px] gap-y-14">
-          <div
-            className="min-w-0 @container"
-            style={{ animation: "rise 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both" }}
-          >
-            <p className="m-0 max-w-[42ch] text-lg font-light leading-[1.72] text-white/60">
-              Tienda especializada en accesorios de alto rendimiento:
-              spoilers, volantes, lips, difusores y escapes de las marcas
-              más reconocidas del automovilismo. Trabajamos con dueños que
-              no se conforman con lo de fábrica.
-            </p>
-
-            <div
-              className="mt-[52px] flex flex-col"
-              style={{
-                animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.6s both",
-              }}
-            >
-              <div
-                className="h-px origin-left bg-white/[0.14]"
-                style={{
-                  animation:
-                    "hair 0.9s cubic-bezier(0.16,1,0.3,1) 0.66s both",
-                }}
-              />
-              {values.map((v) => (
-                <div
-                  key={v.title}
-                  className="flex flex-col gap-2.5 border-b border-white/[0.14] px-1.5 py-6"
+    <>
+      <section className="relative -mt-20 h-[min(92vh,860px)] min-h-[520px] w-full overflow-hidden bg-black sm:-mt-24">
+        <VideoLoopFade
+          src="/videos/nosotros-hero.mp4"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ filter: "saturate(0.92) contrast(1.05) brightness(0.82)" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(to bottom, rgba(10,10,10,0.72) 0%, rgba(10,10,10,0.34) 34%, rgba(10,10,10,0.5) 68%, oklch(0.08 0 0) 100%)",
+          }}
+        >
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-[26px] px-6 pb-[200px] pt-24 text-center">
+            <h1 className="m-0 max-w-[15ch] text-balance font-hero text-[clamp(2.75rem,9.2vw,70px)] font-black uppercase leading-[1.1] tracking-[-0.045em] text-white">
+              <span className="block overflow-hidden py-[0.08em]">
+                <span
+                  className="block"
+                  style={{
+                    animation:
+                      "clip-up 1.15s cubic-bezier(0.16,1,0.3,1) 0.2s both",
+                  }}
                 >
-                  <span className="font-hero text-[min(6cqw,34px)] font-extrabold uppercase tracking-[-0.03em] text-white">
-                    {v.title}
-                  </span>
-                  <span className="text-[15px] font-light leading-[1.7] text-white/55">
-                    {v.description}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div
-            className="min-w-0"
-            style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.7s both" }}
-          >
-            <p className="m-0 mb-5 font-nav text-[9px] uppercase tracking-[0.26em] text-white/35">
-              Qué trabajamos
-            </p>
-            <div className="flex flex-col">
-              {categories.map((c) => (
-                <Link
-                  key={c.id}
-                  href={`/catalogo/${c.slug}`}
-                  className="group flex items-center justify-between gap-4 border-t border-white/[0.08] py-[17px] pl-0.5 text-[13px] font-semibold uppercase tracking-[0.06em] text-white/78 transition-[padding-left,color] duration-300 hover:pl-3 hover:text-white"
-                >
-                  {c.name}
-                  <span className="font-nav text-[11px] text-primary/70 transition-colors group-hover:text-primary">
-                    →
-                  </span>
-                </Link>
-              ))}
-              <Link
-                href="/catalogo"
-                className="flex items-center justify-between gap-4 border-t border-b border-white/[0.08] py-[17px] font-nav text-[11px] uppercase tracking-[0.2em] text-primary/75 transition-colors hover:text-primary"
-              >
-                Ver todo <span>→</span>
-              </Link>
-            </div>
-
-            <div className="mt-[26px] flex items-center gap-3 font-nav text-[10px] uppercase tracking-[0.24em] text-white/40">
-              <span className="animate-breathe inline-block h-1.5 w-1.5 bg-primary" />
-              {partnerBrands.length} marcas partner · envíos a todo el país
-            </div>
+                  ¿Quienes somos?
+                </span>
+              </span>
+            </h1>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="mx-auto max-w-[1100px] px-6 pb-[132px] text-center">
+        <p
+          className="mx-auto max-w-[60ch] text-lg font-light leading-[1.72] text-white/[0.62]"
+          style={{ animation: "rise 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both" }}
+        >
+          Somos una tienda especializada en accesorios de alto rendimiento:
+          spoilers, volantes, lips, difusores y escapes de las marcas más
+          reconocidas del automovilismo. Trabajamos con dueños que no se
+          conforman con lo de fábrica y acompañamos cada proyecto de
+          principio a fin.
+        </p>
+      </section>
+
+      <section className="pb-[132px]">
+        <WorkPhotosCarousel photos={workPhotos} />
+      </section>
+    </>
   );
 }

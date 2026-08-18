@@ -1,19 +1,16 @@
 import { RollingHeading } from "@/components/home/rolling-heading";
 import { BrandsMarquee } from "@/components/home/brands-marquee";
+import { VideoLoopFade } from "@/components/video-loop-fade";
 
 export function Hero() {
   return (
     <section className="relative -mt-20 flex min-h-screen flex-col overflow-hidden bg-background sm:-mt-24">
       <div className="animate-stage-reveal absolute inset-0 overflow-hidden">
         {/* fondo: video en loop */}
-        <video
-          className="absolute inset-0 h-full w-full [transform:translateZ(0)] object-cover"
+        <VideoLoopFade
           src="/videos/hero-night.mp4"
           poster="/videos/hero-night-poster.jpg"
-          autoPlay
-          loop
-          muted
-          playsInline
+          className="absolute inset-0 h-full w-full [transform:translateZ(0)] object-cover"
         />
         <div
           className="absolute inset-0"
