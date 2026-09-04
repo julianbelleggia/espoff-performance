@@ -149,6 +149,34 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* Scroll de la página: barra nativa oculta, reemplazada por <ScrollIndicator /> */
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+/* Contenedores internos con scroll propio (menús, modales, etc.) */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: oklch(1 0 0 / 20%);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: oklch(1 0 0 / 35%);
+}
+
 @layer utilities {
   .bg-radial-glow {
     background-image: radial-gradient(
@@ -193,15 +221,17 @@ html.lenis body {
   }
 
   .animate-fade-up {
-    animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.15s both;
+    animation: fade-up 1s cubic-bezier(0.19, 1, 0.22, 1) 1.3s both;
   }
 
   .animate-stage-reveal {
-    animation: stage-reveal 1.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+    animation: stage-reveal 1.4s cubic-bezier(0.19, 1, 0.22, 1) both;
+    will-change: transform, opacity;
   }
 
   .animate-word-in-left {
-    animation: word-in-left 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+    animation: word-in-left 1.4s cubic-bezier(0.19, 1, 0.22, 1) 0.4s both;
+    will-change: transform, opacity;
   }
 
   .animate-breathe {
@@ -209,7 +239,7 @@ html.lenis body {
   }
 
   .animate-fade-up-cue {
-    animation: fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.25s both;
+    animation: fade-up 1s cubic-bezier(0.19, 1, 0.22, 1) 1.5s both;
   }
 
   .marquee-mask {
@@ -232,10 +262,10 @@ html.lenis body {
 
 @keyframes marquee-scroll {
   from {
-    transform: translateX(0%);
+    transform: translateX(-50%);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(0%);
   }
 }
 
@@ -252,18 +282,18 @@ html.lenis body {
 
 @keyframes stage-reveal {
   from {
-    clip-path: inset(34% 33% 34% 33% round 18px);
-    transform: scale(1.14);
+    transform: scale(1.06);
+    opacity: 0;
   }
   to {
-    clip-path: inset(0% 0% 0% 0% round 0px);
     transform: scale(1);
+    opacity: 1;
   }
 }
 
 @keyframes word-in-left {
   from {
-    transform: translateX(26vw);
+    transform: translateX(8vw);
     opacity: 0;
   }
   to {

@@ -97,7 +97,7 @@ export function GalleryBento() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-6 flex justify-center">
-                <span className="inline-flex h-10 shrink-0 items-center whitespace-nowrap rounded bg-white px-5 text-xs font-semibold uppercase tracking-wide text-black">
+                <span className="inline-flex h-10 shrink-0 items-center whitespace-nowrap border border-white/30 px-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-colors duration-300 group-hover:border-white group-hover:bg-white group-hover:text-black">
                   Ver Proyectos
                 </span>
               </div>

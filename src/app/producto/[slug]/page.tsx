@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import { ProductDetail } from "@/components/product/product-detail";
 import { getBrandById } from "@/lib/data/brands";
 import { getProductBySlug, products } from "@/lib/data/products";
+import { CATALOG_ENABLED } from "@/lib/feature-flags";
 
 export function generateStaticParams() {
+  if (!CATALOG_ENABLED) return [];
   return products.map((product) => ({ slug: product.slug }));
 }
 
@@ -26,7 +28,7 @@ export default async function ProductoPage({
   const { slug } = await params;
   const product = getProductBySlug(slug);
 
-  if (!product) {
+  if (!CATALOG_ENABLED || !product) {
     notFound();
   }
 

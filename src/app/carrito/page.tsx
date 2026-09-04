@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -8,10 +9,15 @@ import { CartItemRow } from "@/components/cart/cart-item-row";
 import { useCart } from "@/hooks/use-cart";
 import { useCurrency } from "@/hooks/use-currency";
 import { products } from "@/lib/data/products";
+import { CATALOG_ENABLED } from "@/lib/feature-flags";
 
 export default function CarritoPage() {
   const { items, subtotal, clearCart } = useCart();
   const { format } = useCurrency();
+
+  if (!CATALOG_ENABLED) {
+    notFound();
+  }
 
   if (items.length === 0) {
     return (

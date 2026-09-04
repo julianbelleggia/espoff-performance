@@ -25,12 +25,7 @@ export function Hero() {
         <RollingHeading />
       </div>
 
-      <div className="animate-fade-up-cue relative flex items-end justify-between gap-10 px-5 pb-7 sm:px-10">
-        <div className="flex shrink-0 items-center gap-2.5 pb-5 font-nav text-[11px] uppercase tracking-[0.18em] text-white/75">
-          <span className="animate-scroll-bounce inline-block">↓</span>
-          Scrolleá para explorar
-        </div>
-
+      <div className="animate-fade-up-cue relative flex items-end px-5 pb-7 sm:px-10">
         <div className="min-w-0 flex-1 sm:max-w-[900px]">
           <BrandsMarquee />
         </div>

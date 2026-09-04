@@ -2,20 +2,19 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ChevronDown, ChevronRight, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CartSheet } from "@/components/cart/cart-sheet";
-import { CatalogDropdown } from "@/components/layout/catalog-dropdown";
-import { CurrencySwitcher } from "@/components/layout/currency-switcher";
-import { catalogLinks } from "@/lib/data/catalog-links";
+// Catálogo / carrito / moneda: ocultos temporalmente (ver AGENTS/CLAUDE — la
+// página funciona por ahora como landing, no como tienda). Componentes y
+// rutas se mantienen intactos para reactivar más adelante.
+// import { CartSheet } from "@/components/cart/cart-sheet";
+// import { CatalogDropdown } from "@/components/layout/catalog-dropdown";
+// import { CurrencySwitcher } from "@/components/layout/currency-switcher";
+// import { catalogLinks } from "@/lib/data/catalog-links";
 import { cn } from "@/lib/utils";
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [mobileCatalogOpen, setMobileCatalogOpen] = useState(false);
-  const [mobileSubmenuOpen, setMobileSubmenuOpen] = useState<string | null>(
-    null
-  );
   const [hidden, setHidden] = useState(false);
   const logoVideoRef = useRef<HTMLVideoElement>(null);
 
@@ -46,8 +45,6 @@ export function Navbar() {
 
   const closeMobileMenu = () => {
     setMobileOpen(false);
-    setMobileCatalogOpen(false);
-    setMobileSubmenuOpen(null);
   };
 
   return (
@@ -84,8 +81,6 @@ export function Navbar() {
 
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:h-24 sm:px-6 lg:px-8">
         <nav className="hidden items-center gap-8 pl-16 font-nav sm:pl-20 md:flex">
-          <CatalogDropdown />
-
           <Link
             href="/proyectos"
             className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 transition-colors hover:text-foreground"
@@ -108,8 +103,6 @@ export function Navbar() {
       </div>
 
       <div className="absolute right-2 top-0 z-50 flex h-20 items-center gap-2 sm:h-24">
-        <CurrencySwitcher />
-        <CartSheet />
         <Button
           variant="ghost"
           size="icon"
@@ -128,71 +121,6 @@ export function Navbar() {
         )}
       >
         <div className="flex flex-col gap-1 px-4 py-3">
-          <button
-            type="button"
-            onClick={() => setMobileCatalogOpen((v) => !v)}
-            className="flex items-center justify-between py-2 text-left text-sm text-foreground/80"
-          >
-            Catálogo
-            <ChevronDown
-              className={cn(
-                "h-4 w-4 transition-transform",
-                mobileCatalogOpen && "rotate-180"
-              )}
-            />
-          </button>
-
-          {mobileCatalogOpen && (
-            <div className="ml-3 flex flex-col gap-1 border-l border-border/50 pl-3">
-              {catalogLinks.map((item) =>
-                "children" in item ? (
-                  <div key={item.label} className="flex flex-col">
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setMobileSubmenuOpen((v) =>
-                          v === item.label ? null : item.label
-                        )
-                      }
-                      className="flex items-center justify-between py-2 text-left text-sm text-foreground/80"
-                    >
-                      {item.label}
-                      <ChevronRight
-                        className={cn(
-                          "h-4 w-4 transition-transform",
-                          mobileSubmenuOpen === item.label && "rotate-90"
-                        )}
-                      />
-                    </button>
-                    {mobileSubmenuOpen === item.label && (
-                      <div className="ml-3 flex flex-col gap-1 border-l border-border/50 pl-3">
-                        {item.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            className="py-2 text-sm text-foreground/70"
-                            onClick={closeMobileMenu}
-                          >
-                            {child.label}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="py-2 text-sm text-foreground/80"
-                    onClick={closeMobileMenu}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              )}
-            </div>
-          )}
-
           <Link
             href="/proyectos"
             className="py-2 text-sm text-foreground/80"

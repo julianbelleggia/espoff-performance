@@ -56,6 +56,11 @@ export const galleryCars: GalleryCar[] = [
     videos: ["/images/galeria/ford-ranger-raptor/video.mp4"],
   },
   {
+    slug: "ford-ranger-raptor-gris",
+    name: "Ford Ranger Raptor Gris",
+    photos: Array.from({ length: 10 }, (_, i) => `/images/galeria/ford-ranger-raptor-gris/${i + 1}.jpg`),
+  },
+  {
     slug: "toyota-corolla",
     name: "Toyota Corolla",
     photos: Array.from({ length: 10 }, (_, i) => `/images/galeria/toyota-corolla/${i + 1}.jpg`),
@@ -96,5 +101,6 @@ export const galleryCars: GalleryCar[] = [
     slug: "vento-gli",
     name: "Volkswagen Vento GLI",
     photos: Array.from({ length: 10 }, (_, i) => `/images/galeria/vento-gli/${i + 1}.jpg`),
+    videos: ["/images/galeria/vento-gli/video.mp4"],
   },
 ];

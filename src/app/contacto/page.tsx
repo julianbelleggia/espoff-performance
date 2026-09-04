@@ -104,6 +104,13 @@ export default function ContactoPage() {
       </section>
 
       <section className="mx-auto max-w-[1100px] px-6 pb-[132px]">
+        <p
+          className="pt-16 text-center font-nav text-sm uppercase tracking-[0.26em] text-white/70"
+          style={{ animation: "rise 0.9s cubic-bezier(0.16,1,0.3,1) 0.6s both" }}
+        >
+          Contactanos
+        </p>
+
         <div
           className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))]"
           style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.8s both" }}

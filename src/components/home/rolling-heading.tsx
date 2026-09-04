@@ -35,7 +35,7 @@ export function RollingHeading() {
     <h1 className="m-0 w-full font-hero text-[40px] font-bold uppercase leading-[1.02] tracking-[-0.04em] text-white sm:text-[80px] md:text-[80px] lg:text-[80px]">
       <span className="animate-word-in-left block h-[1.02em] overflow-hidden">
         <span
-          className="block will-change-transform"
+          className="block"
           style={{ transform: `translateY(-${index * 1.02}em)`, transition }}
         >
           {WORDS.map((word, i) => (

@@ -11,6 +11,7 @@ import { CurrencyProvider } from "@/hooks/use-currency";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
+import { ScrollIndicator } from "@/components/providers/scroll-indicator";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -54,6 +55,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <SmoothScroll />
+        <ScrollIndicator />
         <CurrencyProvider>
           <CartProvider>
             <Navbar />

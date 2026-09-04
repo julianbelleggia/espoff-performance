@@ -2,8 +2,10 @@ import { notFound } from "next/navigation";
 import { CatalogGridMinimal } from "@/components/catalog/catalog-grid-minimal";
 import { categories, getCategoryBySlug } from "@/lib/data/categories";
 import { getProductsByCategory } from "@/lib/data/products";
+import { CATALOG_ENABLED } from "@/lib/feature-flags";
 
 export function generateStaticParams() {
+  if (!CATALOG_ENABLED) return [];
   return categories.map((category) => ({ categoria: category.slug }));
 }
 
@@ -25,7 +27,7 @@ export default async function CategoriaPage({
   const { categoria } = await params;
   const category = getCategoryBySlug(categoria);
 
-  if (!category) {
+  if (!CATALOG_ENABLED || !category) {
     notFound();
   }
 
