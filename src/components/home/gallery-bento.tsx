@@ -1,11 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { socials } from "@/lib/data/socials";
 import { useReveal } from "@/hooks/use-reveal";
 
 const instagramHref =
   socials.find((s) => s.name === "Instagram")?.href ?? "#";
+
+const GRID_SIZES = "(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw";
 
 const galleryItems = [
   {
@@ -71,11 +74,12 @@ export function GalleryBento() {
                 rel="noopener noreferrer"
                 className="group relative block h-full w-full overflow-hidden rounded"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src={item.src}
                   alt={item.alt}
-                  className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                  fill
+                  sizes={GRID_SIZES}
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
                 />
               </a>
             </RevealTile>
@@ -89,11 +93,12 @@ export function GalleryBento() {
               href="/proyectos"
               className="group relative block h-full w-full overflow-hidden rounded"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/gallery/g-hero-i8.jpg"
                 alt="BMW i8"
-                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                fill
+                sizes={GRID_SIZES}
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-6 flex justify-center">
@@ -114,11 +119,12 @@ export function GalleryBento() {
               rel="noopener noreferrer"
               className="group relative block h-full w-full overflow-hidden rounded"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/images/gallery/g-raptor.jpg"
                 alt="Volkswagen Amarok V6"
-                className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
+                fill
+                sizes={GRID_SIZES}
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
               />
             </a>
           </RevealTile>

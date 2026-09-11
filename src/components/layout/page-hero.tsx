@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function PageHero({
   currentLabel,
@@ -58,12 +59,13 @@ export function PageHero({
             animation: "plate 1.2s cubic-bezier(0.16,1,0.3,1) 0.42s both",
           }}
         >
-          <div className="relative overflow-hidden shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9)]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div className="relative aspect-[3/4] w-full overflow-hidden shadow-[0_40px_80px_-30px_rgba(0,0,0,0.9)]">
+            <Image
               src={plateSrc}
               alt={plateAlt}
-              className="block aspect-[3/4] w-full object-cover"
+              fill
+              sizes="(min-width: 640px) 300px, 100vw"
+              className="object-cover"
               style={{ filter: "saturate(0.92) contrast(1.04)" }}
             />
             <div className="absolute inset-0 shadow-[inset_0_0_0_1px_rgba(214,193,155,0.28)]" />

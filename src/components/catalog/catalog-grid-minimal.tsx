@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Search, X } from "lucide-react";
 import { useMemo, useRef, useState } from "react";
 import { getBrandById } from "@/lib/data/brands";
@@ -196,14 +197,14 @@ export function CatalogGridMinimal({
                 href={`/producto/${product.slug}`}
                 className="group flex flex-col gap-7"
               >
-                <div className="aspect-square overflow-hidden bg-white">
+                <div className="relative aspect-square overflow-hidden bg-white">
                   {product.image ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
+                    <Image
                       src={product.image}
                       alt={product.name}
-                      loading="lazy"
-                      className="h-full w-full object-contain p-[7%] transition-transform duration-1000 ease-out group-hover:scale-[1.045]"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="object-contain p-[7%] transition-transform duration-1000 ease-out group-hover:scale-[1.045]"
                     />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-neutral-100">

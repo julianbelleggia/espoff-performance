@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,9 @@ export function Navbar() {
   };
 
   useEffect(() => {
+    // window.scrollY only exists client-side, so this can't be a useState
+    // initializer (would break SSR) — it has to sync on mount instead.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHidden(window.scrollY > 0);
 
     const handleScroll = () => {
@@ -62,10 +66,12 @@ export function Navbar() {
         onMouseEnter={playLogoGlitch}
         onMouseLeave={resetLogoGlitch}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/logo-white.svg"
           alt="Logo"
+          width={80}
+          height={80}
+          preload
           className="h-16 w-16 opacity-100 transition-opacity duration-150 group-hover:opacity-0 sm:h-20 sm:w-20"
         />
         <video

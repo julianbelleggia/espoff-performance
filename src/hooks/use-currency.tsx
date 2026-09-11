@@ -31,6 +31,9 @@ export function CurrencyProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === "ARS" || stored === "USD") {
+      // Syncing from localStorage (browser-only, unavailable during SSR),
+      // so this has to run post-mount rather than as an initializer.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setCurrencyState(stored);
     }
   }, []);

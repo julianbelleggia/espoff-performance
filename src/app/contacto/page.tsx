@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { socials } from "@/lib/data/socials";
 
 export const metadata = {
@@ -62,11 +63,13 @@ export default function ContactoPage() {
   return (
     <>
       <section className="relative -mt-20 h-[min(92vh,860px)] min-h-[520px] w-full overflow-hidden bg-black sm:-mt-24">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/images/contacto-hero.jpg"
           alt="BMW M240i preparado por ESPOFF Performance"
-          className="absolute inset-0 h-full w-full object-cover"
+          fill
+          sizes="100vw"
+          preload
+          className="object-cover"
           style={{ filter: "saturate(0.92) contrast(1.05) brightness(0.82)" }}
         />
         <div

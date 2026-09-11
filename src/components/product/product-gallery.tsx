@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -35,12 +36,13 @@ export function ProductGallery({
 
   if (gallery.length === 1) {
     return (
-      <div className="overflow-hidden rounded-lg bg-card">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+      <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-card">
+        <Image
           src={gallery[0]}
           alt={imageAlt ?? categoryName ?? "Producto"}
-          className="aspect-square w-full object-cover"
+          fill
+          sizes="(min-width: 1024px) 50vw, 100vw"
+          className="object-cover"
         />
       </div>
     );
@@ -60,12 +62,13 @@ export function ProductGallery({
           <CarouselContent>
             {gallery.map((src, index) => (
               <CarouselItem key={src}>
-                <div className="overflow-hidden rounded-lg bg-card">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="relative aspect-square w-full overflow-hidden rounded-lg bg-card">
+                  <Image
                     src={src}
                     alt={`${imageAlt ?? categoryName ?? "Producto"} — foto ${index + 1}`}
-                    className="aspect-square w-full object-cover"
+                    fill
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    className="object-cover"
                   />
                 </div>
               </CarouselItem>
@@ -81,18 +84,13 @@ export function ProductGallery({
               key={src}
               onClick={() => api?.scrollTo(index)}
               className={cn(
-                "overflow-hidden rounded-md border transition-colors",
+                "relative aspect-square w-full overflow-hidden rounded-md border transition-colors",
                 selected === index
                   ? "border-primary"
                   : "border-border/60 hover:border-border"
               )}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={src}
-                alt=""
-                className="aspect-square w-full object-cover"
-              />
+              <Image src={src} alt="" fill sizes="120px" className="object-cover" />
             </button>
           ))}
         </div>

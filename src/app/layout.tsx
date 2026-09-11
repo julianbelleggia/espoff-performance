@@ -12,6 +12,7 @@ import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { ScrollIndicator } from "@/components/providers/scroll-indicator";
+import { SITE_URL } from "@/lib/site-config";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -37,10 +38,31 @@ const cormorantGaramond = Cormorant_Garamond({
   style: ["italic", "normal"],
 });
 
+const description =
+  "Spoilers, volantes, lips, difusores y escapes premium (Akrapovic, Milltek y más) para llevar tu auto al siguiente nivel.";
+
 export const metadata: Metadata = {
-  title: "ESPOFF Performance",
-  description:
-    "Spoilers, volantes, lips, difusores y escapes premium (Akrapovic, Milltek y más) para llevar tu auto al siguiente nivel.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "ESPOFF Performance",
+    template: "%s | ESPOFF Performance",
+  },
+  description,
+  openGraph: {
+    title: "ESPOFF Performance",
+    description,
+    url: SITE_URL,
+    siteName: "ESPOFF Performance",
+    locale: "es_AR",
+    type: "website",
+    images: [{ url: "/og-image.jpg", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ESPOFF Performance",
+    description,
+    images: ["/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({

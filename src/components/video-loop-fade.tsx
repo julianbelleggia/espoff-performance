@@ -21,6 +21,12 @@ export function VideoLoopFade({
 }) {
   const videoARef = useRef<HTMLVideoElement>(null);
   const videoBRef = useRef<HTMLVideoElement>(null);
+  // Read via ref inside the rAF loop below so changing this prop doesn't
+  // force the whole effect (video listeners, playback state) to restart.
+  const loopOutRef = useRef(loopOutSeconds);
+  useEffect(() => {
+    loopOutRef.current = loopOutSeconds;
+  }, [loopOutSeconds]);
 
   useEffect(() => {
     const a = videoARef.current;
@@ -68,7 +74,7 @@ export function VideoLoopFade({
     let raf: number;
     const tick = () => {
       const v = active;
-      const d = loopOutSeconds ?? v.duration;
+      const d = loopOutRef.current ?? v.duration;
       if (d && d - v.currentTime <= FADE_SECONDS) swap();
       raf = requestAnimationFrame(tick);
     };

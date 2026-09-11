@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { partnerBrands } from "@/lib/data/partner-brands";
 
 export function BrandsMarquee() {
@@ -15,14 +16,15 @@ export function BrandsMarquee() {
         {loopBrands.map((brand, i) => (
           <div
             key={`${brand.slug}-${i}`}
-            className="flex h-14 w-28 shrink-0 items-center justify-center opacity-75 transition-opacity duration-200 hover:opacity-100"
+            className="relative flex h-14 w-28 shrink-0 items-center justify-center opacity-75 transition-opacity duration-200 hover:opacity-100"
             title={brand.name}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={`/images/brands/${brand.slug}.png`}
               alt={brand.name}
-              className="h-full w-full object-contain"
+              fill
+              sizes="112px"
+              className="object-contain"
             />
           </div>
         ))}

@@ -11,7 +11,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { CartItemRow } from "@/components/cart/cart-item-row";
 import { useCart } from "@/hooks/use-cart";
 import { useCurrency } from "@/hooks/use-currency";

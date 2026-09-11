@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Image from "next/image";
 import { createPortal } from "react-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import type { GalleryCar } from "@/lib/data/gallery";
@@ -54,13 +55,13 @@ export function GalleryGrid({ cars }: { cars: GalleryCar[] }) {
             }}
             className="group flex flex-col gap-[18px] text-left text-white"
           >
-            <div className="relative overflow-hidden bg-[oklch(0.11_0.003_80)]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[oklch(0.11_0.003_80)]">
+              <Image
                 src={car.photos[0]}
                 alt={car.name}
-                loading="lazy"
-                className="block aspect-[4/3] w-full object-cover [filter:saturate(0.95)_contrast(1.03)] transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+                fill
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover [filter:saturate(0.95)_contrast(1.03)] transition-transform duration-500 ease-out group-hover:scale-[1.04]"
               />
               <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_0_1px_rgba(255,255,255,0.09)]" />
             </div>
@@ -104,14 +105,22 @@ export function GalleryGrid({ cars }: { cars: GalleryCar[] }) {
                 autoPlay
                 className="max-h-full max-w-full rounded object-contain"
               />
-            ) : (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={media[photoIndex]?.src}
-                alt={`${openCar.name} ${photoIndex + 1}`}
-                className="max-h-full max-w-full rounded object-contain"
-              />
-            )}
+            ) : media[photoIndex]?.src ? (
+              // Extra wrapper so `fill` sizes against this box's content
+              // area — a fill child ignores its own parent's padding, so
+              // the padding needs to live one level up (clearance for the
+              // prev/next buttons below).
+              <div className="relative h-full w-full">
+                <Image
+                  key={media[photoIndex].src}
+                  src={media[photoIndex].src}
+                  alt={`${openCar.name} ${photoIndex + 1}`}
+                  fill
+                  sizes="100vw"
+                  className="rounded object-contain"
+                />
+              </div>
+            ) : null}
 
             {media.length > 1 && (
               <>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
@@ -63,12 +64,12 @@ export function WorkPhotosCarousel({
               }}
               className="relative aspect-[9/16] w-[300px] shrink-0 overflow-hidden shadow-[inset_0_0_0_1px_rgba(255,255,255,0.09)] will-change-transform"
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src={photo.src}
                 alt={photo.alt}
-                className="h-full w-full object-cover"
-                loading="lazy"
+                fill
+                sizes="300px"
+                className="object-cover"
                 draggable={false}
               />
             </div>

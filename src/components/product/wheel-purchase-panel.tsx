@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Check, MessageCircle, Minus, Plus, ShoppingBag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -109,17 +110,18 @@ export function WheelPurchasePanel({
                   title={color.name}
                   aria-label={color.name}
                   className={cn(
-                    "h-9 w-9 overflow-hidden rounded-full border-2 transition-colors",
+                    "relative h-9 w-9 overflow-hidden rounded-full border-2 transition-colors",
                     index === colorIndex
                       ? "border-primary"
                       : "border-border/60 hover:border-border"
                   )}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={color.image}
                     alt={color.name}
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="36px"
+                    className="object-cover"
                   />
                 </button>
               ))}

@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { socials } from "@/lib/data/socials";
 import { useReveal } from "@/hooks/use-reveal";
 
 const links = [
   { label: "Mapa del sitio", href: "/catalogo" },
-  { label: "Política de privacidad", href: "#" },
+  { label: "Política de privacidad", href: "/politica-de-privacidad" },
 ];
 
 export function Footer() {
@@ -30,10 +31,11 @@ export function Footer() {
           className="relative z-10 flex flex-1 flex-col justify-center gap-6 px-6 py-10 sm:px-10 md:py-12"
         >
           <div className="flex items-center gap-4">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/logo-white.svg"
               alt="ESPOFF Performance"
+              width={56}
+              height={56}
               className="h-14 w-14 shrink-0"
             />
           </div>
@@ -78,11 +80,12 @@ export function Footer() {
           style={imageStyle}
           className="relative h-48 w-full shrink-0 overflow-hidden md:h-auto md:w-[45%] md:[clip-path:polygon(12%_0,100%_0,100%_100%,0_100%)]"
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/images/footer-gti.jpg"
             alt="Volkswagen Golf GTI con alerón de carbono ESPOFF"
-            className="absolute inset-0 h-full w-full object-cover"
+            fill
+            sizes="(min-width: 768px) 45vw, 100vw"
+            className="object-cover"
           />
         </div>
       </div>

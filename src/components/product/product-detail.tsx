@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PriceTag } from "@/components/product/price-tag";
 import { ProductVisual } from "@/components/product/product-visual";
@@ -64,12 +65,20 @@ export function ProductDetail({
       <section className="mt-9">
         <div className="relative bg-white">
           {hero ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={hero}
-              alt={product.name}
-              className="block h-[74vh] min-h-[520px] w-full object-contain p-[5vh_6vw]"
-            />
+            <div className="relative h-[74vh] min-h-[520px] w-full">
+              <div className="absolute inset-0 p-[5vh_6vw]">
+                <div className="relative h-full w-full">
+                  <Image
+                    src={hero}
+                    alt={product.name}
+                    fill
+                    sizes="100vw"
+                    preload
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            </div>
           ) : (
             <div className="flex h-[74vh] min-h-[520px] w-full items-center justify-center bg-neutral-100">
               <ProductVisual
@@ -113,14 +122,19 @@ export function ProductDetail({
                 onClick={() => setImageIndex(index)}
                 aria-label={`Ver foto ${index + 1}`}
                 className={cn(
-                  "h-14 w-14 overflow-hidden border transition-colors",
+                  "relative h-14 w-14 overflow-hidden border transition-colors",
                   index === safeImageIndex
                     ? "border-primary"
                     : "border-black/15 hover:border-black/30"
                 )}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt="" className="h-full w-full object-cover" />
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  sizes="56px"
+                  className="object-cover"
+                />
               </button>
             ))}
           </div>
@@ -162,17 +176,18 @@ export function ProductDetail({
                   title={color.name}
                   aria-label={color.name}
                   className={cn(
-                    "h-9 w-9 overflow-hidden rounded-full border-2 transition-colors",
+                    "relative h-9 w-9 overflow-hidden rounded-full border-2 transition-colors",
                     index === colorIndex
                       ? "border-primary"
                       : "border-foreground/20 hover:border-foreground/40"
                   )}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src={color.image}
                     alt={color.name}
-                    className="h-full w-full object-cover"
+                    fill
+                    sizes="36px"
+                    className="object-cover"
                   />
                 </button>
               ))}

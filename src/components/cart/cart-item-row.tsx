@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { Minus, Plus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ProductVisual } from "@/components/product/product-visual";
@@ -38,16 +39,17 @@ export function CartItemRow({
       <Link
         href={`/producto/${product.slug}`}
         className={cn(
-          "shrink-0 rounded-md",
+          "relative shrink-0 rounded-md",
           compact ? "h-16 w-16" : "h-24 w-24"
         )}
       >
         {variantImage ?? product.image ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={variantImage ?? product.image}
+          <Image
+            src={variantImage ?? product.image ?? ""}
             alt={product.name}
-            className="h-full w-full rounded-md object-cover"
+            fill
+            sizes={compact ? "64px" : "96px"}
+            className="rounded-md object-cover"
           />
         ) : (
           <ProductVisual

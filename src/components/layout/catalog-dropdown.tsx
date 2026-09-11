@@ -60,7 +60,11 @@ export function CatalogDropdown() {
   }, []);
 
   useEffect(() => {
+    // Height is derived from live DOM measurements (subRefs' scrollHeight),
+    // an external system React doesn't track — this can't be computed
+    // during render, so it has to be synced here instead.
     if (!open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setMaxHeight("0px");
       return;
     }
@@ -110,6 +114,13 @@ export function CatalogDropdown() {
         }}
       >
         <div ref={contentRef} className="flex flex-col p-1">
+          {/*
+            Reading subRefs.current during this render (below) is intentional:
+            it's the only way a group's collapsed→open height transition gets
+            its target value on the very render it opens, rather than a
+            render later.
+          */}
+          {/* eslint-disable-next-line react-hooks/refs */}
           {catalogLinks.map((item) =>
             "children" in item ? (
               <div key={item.label}>

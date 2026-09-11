@@ -39,6 +39,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored) {
       try {
+        // Syncing from localStorage (browser-only, unavailable during SSR),
+        // so this has to run post-mount rather than as an initializer.
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setItems(JSON.parse(stored));
       } catch {
         // ignore corrupted storage

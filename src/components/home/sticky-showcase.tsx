@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useReveal } from "@/hooks/use-reveal";
 
 export function StickyShowcase() {
@@ -16,11 +17,12 @@ export function StickyShowcase() {
         style={imgStyle}
         className="sticky top-0 h-screen w-full overflow-hidden"
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="/images/gallery/showcase-m135i.jpg"
           alt="BMW M135i xDrive"
-          className="h-full w-full object-cover"
+          fill
+          sizes="100vw"
+          className="object-cover"
         />
         <div
           className="absolute inset-0"

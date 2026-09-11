@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { interiorShots } from "@/lib/data/interior-shots";
 
 const SLIDE_MS = 4000;
@@ -23,11 +24,12 @@ export function InteriorCarousel() {
           className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
           style={{ opacity: i === index ? 1 : 0 }}
         >
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={shot.src}
             alt={`Interior — ${shot.carName}`}
-            className="h-full w-full object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
           <span className="absolute bottom-6 left-6 font-hero text-sm uppercase tracking-wide text-white sm:bottom-10 sm:left-10">
