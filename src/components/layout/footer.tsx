@@ -6,7 +6,8 @@ import { socials } from "@/lib/data/socials";
 import { useReveal } from "@/hooks/use-reveal";
 
 const links = [
-  { label: "Mapa del sitio", href: "/catalogo" },
+  { label: "Aviso legal", href: "/aviso-legal" },
+  { label: "Términos de uso", href: "/terminos-de-uso" },
   { label: "Política de privacidad", href: "/politica-de-privacidad" },
 ];
 
@@ -40,14 +41,14 @@ export function Footer() {
             />
           </div>
 
-          <div className="flex flex-col items-start gap-2 font-nav">
+          <div className="flex flex-col items-start gap-2 font-plex-mono">
             {socials.map((social) => (
               <a
                 key={social.name}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs uppercase tracking-[0.08em] text-white/85 transition-colors hover:text-white"
+                className="text-[12.8px] font-light uppercase tracking-[-0.128px] text-white/85 transition-colors hover:text-white"
               >
                 {social.name}
               </a>
@@ -55,12 +56,12 @@ export function Footer() {
           </div>
 
           <div className="max-w-md border-t border-white/15 pt-5">
-            <ul className="flex flex-wrap gap-x-8 gap-y-2 font-nav">
+            <ul className="flex flex-wrap gap-x-8 gap-y-2 font-plex-mono">
               {links.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-xs uppercase tracking-[0.08em] text-white/70 transition-colors hover:text-white"
+                    className="text-[12.8px] font-light uppercase tracking-[-0.128px] text-white/70 transition-colors hover:text-white"
                   >
                     {link.label}
                   </Link>
@@ -69,7 +70,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div className="font-nav text-xs uppercase tracking-[0.08em] text-white/40">
+          <div className="font-plex-mono text-[12.8px] font-light uppercase tracking-[-0.128px] text-white/40">
             © {new Date().getFullYear()} ESPOFF Performance. Todos los
             derechos reservados.
           </div>

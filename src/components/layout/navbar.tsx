@@ -62,7 +62,7 @@ export function Navbar() {
       <Link
         href="/"
         aria-label="Inicio"
-        className="group absolute left-2 top-1/2 z-50 -translate-y-1/2"
+        className="group absolute left-2 top-0 z-50 flex h-20 items-center sm:left-4 sm:h-24"
         onMouseEnter={playLogoGlitch}
         onMouseLeave={resetLogoGlitch}
       >
@@ -85,34 +85,32 @@ export function Navbar() {
         />
       </Link>
 
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:h-24 sm:px-6 lg:px-8">
-        <nav className="hidden items-center gap-8 pl-16 font-nav sm:pl-20 md:flex">
+      <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:h-24 sm:px-6 lg:px-8">
+        <nav className="hidden items-center gap-8 pl-16 font-plex-mono sm:pl-20 md:flex">
           <Link
             href="/proyectos"
-            className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 transition-colors hover:text-foreground"
+            className="text-[12.8px] font-light uppercase tracking-[-0.128px] text-foreground/80 transition-colors hover:text-foreground"
           >
             Proyectos
           </Link>
           <Link
             href="/nosotros"
-            className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 transition-colors hover:text-foreground"
+            className="text-[12.8px] font-light uppercase tracking-[-0.128px] text-foreground/80 transition-colors hover:text-foreground"
           >
             Nosotros
           </Link>
           <Link
             href="/contacto"
-            className="text-xs font-medium uppercase tracking-[0.08em] text-foreground/80 transition-colors hover:text-foreground"
+            className="text-[12.8px] font-light uppercase tracking-[-0.128px] text-foreground/80 transition-colors hover:text-foreground"
           >
             Contacto
           </Link>
         </nav>
-      </div>
 
-      <div className="absolute right-2 top-0 z-50 flex h-20 items-center gap-2 sm:h-24">
         <Button
           variant="ghost"
           size="icon"
-          className="md:hidden"
+          className="ml-auto md:hidden"
           aria-label="Abrir menú"
           onClick={() => setMobileOpen((v) => !v)}
         >
@@ -122,28 +120,28 @@ export function Navbar() {
 
       <nav
         className={cn(
-          "border-t border-border/50 bg-background/95 backdrop-blur-sm md:hidden",
+          "border-t border-border/50 bg-black md:hidden",
           mobileOpen ? "block" : "hidden"
         )}
       >
-        <div className="flex flex-col gap-1 px-4 py-3">
+        <div className="flex flex-col px-4 py-3 font-plex-mono">
           <Link
             href="/proyectos"
-            className="py-2 text-sm text-foreground/80"
+            className="block py-3 text-base font-light uppercase tracking-[-0.128px] text-foreground/80"
             onClick={closeMobileMenu}
           >
             Proyectos
           </Link>
           <Link
             href="/nosotros"
-            className="py-2 text-sm text-foreground/80"
+            className="block py-3 text-base font-light uppercase tracking-[-0.128px] text-foreground/80"
             onClick={closeMobileMenu}
           >
             Nosotros
           </Link>
           <Link
             href="/contacto"
-            className="py-2 text-sm text-foreground/80"
+            className="block py-3 text-base font-light uppercase tracking-[-0.128px] text-foreground/80"
             onClick={closeMobileMenu}
           >
             Contacto

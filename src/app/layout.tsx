@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import {
-  Cormorant_Garamond,
   Geist_Mono,
-  Montserrat,
-  Space_Mono,
+  IBM_Plex_Mono,
+  Manrope,
+  Source_Serif_4,
+  Space_Grotesk,
 } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/hooks/use-cart";
@@ -14,8 +15,8 @@ import { SmoothScroll } from "@/components/providers/smooth-scroll";
 import { ScrollIndicator } from "@/components/providers/scroll-indicator";
 import { SITE_URL } from "@/lib/site-config";
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+const manrope = Manrope({
+  variable: "--font-sans",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700", "800"],
 });
@@ -25,17 +26,28 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const spaceMono = Space_Mono({
+const spaceGrotesk = Space_Grotesk({
   variable: "--font-nav",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500", "700"],
 });
 
-const cormorantGaramond = Cormorant_Garamond({
-  variable: "--font-cormorant",
+// Header nav ("Proyectos / Nosotros / Contacto") only — matches
+// https://s-2k.webflow.io/'s progress-nav labels exactly (IBM Plex Mono,
+// weight 300, ~12.8px, -0.128px tracking, uppercase).
+const ibmPlexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500"],
-  style: ["italic", "normal"],
+  weight: ["300"],
+});
+
+// Titles (font-hero) — free stand-in for Freight Display Pro (the serif on
+// scgroup.dk's "Mærk mere" hero, which is a paid Adobe/Typekit font).
+// Regular only: titles render at weight 400, not bold.
+const sourceSerif = Source_Serif_4({
+  variable: "--font-hero",
+  subsets: ["latin"],
+  weight: ["400"],
 });
 
 const description =
@@ -73,7 +85,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${montserrat.variable} ${geistMono.variable} ${spaceMono.variable} ${cormorantGaramond.variable} dark h-full antialiased`}
+      className={`${manrope.variable} ${geistMono.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} ${sourceSerif.variable} dark h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <SmoothScroll />

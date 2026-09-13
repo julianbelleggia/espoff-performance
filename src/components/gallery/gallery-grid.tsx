@@ -79,7 +79,7 @@ export function GalleryGrid({ cars }: { cars: GalleryCar[] }) {
           <div className="fixed inset-0 z-50 flex flex-col bg-black/95">
           <div className="flex items-center justify-between px-4 py-4 sm:px-6">
             <div>
-              <p className="font-hero text-sm font-bold normal-case tracking-wide text-white sm:text-base">
+              <p className="font-hero text-sm normal-case tracking-wide text-white sm:text-base">
                 {openCar.name}
               </p>
               <p className="text-xs text-white/60">

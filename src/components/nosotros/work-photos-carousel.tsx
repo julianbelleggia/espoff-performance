@@ -68,7 +68,8 @@ export function WorkPhotosCarousel({
                 src={photo.src}
                 alt={photo.alt}
                 fill
-                sizes="300px"
+                sizes="600px"
+                quality={90}
                 className="object-cover"
                 draggable={false}
               />

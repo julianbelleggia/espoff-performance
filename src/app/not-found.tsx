@@ -6,7 +6,7 @@ export default function NotFound() {
       <p className="font-nav text-xs uppercase tracking-[0.2em] text-foreground/40">
         Error 404
       </p>
-      <h1 className="font-hero text-4xl font-bold uppercase tracking-tight text-foreground sm:text-6xl">
+      <h1 className="font-hero text-4xl tracking-tight text-foreground sm:text-6xl">
         Esta página no existe
       </h1>
       <p className="max-w-md text-sm text-foreground/60">

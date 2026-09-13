@@ -32,9 +32,14 @@ export function InteriorCarousel() {
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
-          <span className="absolute bottom-6 left-6 font-hero text-sm uppercase tracking-wide text-white sm:bottom-10 sm:left-10">
-            {shot.carName}
-          </span>
+          <div className="absolute bottom-6 left-6 flex flex-col gap-1 sm:bottom-10 sm:left-10">
+            <span className="font-hero text-sm tracking-wide text-white">
+              {shot.carName}
+            </span>
+            <span className="font-hero text-xs tracking-wide text-white/60">
+              Tu interior también suma.
+            </span>
+          </div>
         </div>
       ))}
     </section>

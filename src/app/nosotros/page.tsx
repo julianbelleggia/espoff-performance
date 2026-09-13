@@ -58,7 +58,7 @@ export default function NosotrosPage() {
           }}
         >
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-[26px] px-6 pb-[200px] pt-24 text-center">
-            <h1 className="m-0 max-w-[15ch] text-balance font-hero text-[clamp(2.75rem,9.2vw,70px)] font-black uppercase leading-[1.1] tracking-[-0.045em] text-white">
+            <h1 className="m-0 max-w-[15ch] text-balance font-hero text-[clamp(2.75rem,9.2vw,70px)] leading-[1.1] tracking-[-0.045em] text-white">
               <span className="block overflow-hidden py-[0.08em]">
                 <span
                   className="block"

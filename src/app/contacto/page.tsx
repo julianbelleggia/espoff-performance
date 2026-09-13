@@ -80,7 +80,7 @@ export default function ContactoPage() {
           }}
         >
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-[26px] px-6 pb-[200px] pt-24 text-center">
-            <h1 className="m-0 max-w-[15ch] text-balance font-hero text-[clamp(2.75rem,9.2vw,70px)] font-black uppercase leading-[1.1] tracking-[-0.045em] text-white">
+            <h1 className="m-0 max-w-[15ch] text-balance font-hero text-[clamp(2.75rem,9.2vw,70px)] leading-[1.1] tracking-[-0.045em] text-white">
               <span className="block overflow-hidden py-[0.08em]">
                 <span
                   className="block"
@@ -107,16 +107,22 @@ export default function ContactoPage() {
       </section>
 
       <section className="mx-auto max-w-[1100px] px-6 pb-[132px]">
-        <p
-          className="pt-16 text-center font-nav text-sm uppercase tracking-[0.26em] text-white/70"
-          style={{ animation: "rise 0.9s cubic-bezier(0.16,1,0.3,1) 0.6s both" }}
-        >
-          Contactanos
-        </p>
+        <h2 className="m-0 pt-24 text-center font-hero text-[clamp(2.25rem,7vw,52px)] leading-[1.05] tracking-[-0.04em] text-white sm:pt-28">
+          <span className="block overflow-hidden py-[0.08em]">
+            <span
+              className="block"
+              style={{
+                animation: "clip-up 1.05s cubic-bezier(0.16,1,0.3,1) 0.2s both",
+              }}
+            >
+              Contactanos
+            </span>
+          </span>
+        </h2>
 
         <div
-          className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))]"
-          style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.8s both" }}
+          className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,240px),1fr))] pt-10"
+          style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.5s both" }}
         >
           {channels.map((ch) => (
             <a

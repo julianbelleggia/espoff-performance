@@ -25,8 +25,8 @@ export function Hero() {
         <RollingHeading />
       </div>
 
-      <div className="animate-fade-up-cue relative flex items-end px-5 pb-7 sm:px-10">
-        <div className="min-w-0 flex-1 sm:max-w-[900px]">
+      <div className="animate-fade-up-cue relative flex items-end justify-end px-5 pb-7 sm:px-10">
+        <div className="min-w-0 w-full sm:max-w-[900px]">
           <BrandsMarquee />
         </div>
       </div>

@@ -1,134 +1,171 @@
 "use client";
 
+import { useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { socials } from "@/lib/data/socials";
-import { useReveal } from "@/hooks/use-reveal";
 
 const instagramHref =
   socials.find((s) => s.name === "Instagram")?.href ?? "#";
 
-const GRID_SIZES = "(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw";
+const IMG =
+  "object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105";
 
-const galleryItems = [
-  {
-    src: "/images/gallery/g-m340i.jpg",
-    alt: "BMW M340i",
-    className: "col-start-1 row-start-1",
-  },
-  {
-    src: "/images/gallery/g-m240i.jpg",
-    alt: "BMW M240i",
-    className: "col-start-3 row-start-1",
-  },
-  {
-    src: "/images/gallery/g-golf.jpg",
-    alt: "Volkswagen Golf GTI",
-    className: "col-start-1 row-start-2",
-  },
-  {
-    src: "/images/gallery/g-a5.jpg",
-    alt: "Audi A5 S Line",
-    className: "col-start-1 row-start-3",
-  },
-  {
-    src: "/images/gallery/g-m135i.jpg",
-    alt: "BMW M135i XDrive",
-    className: "col-start-2 row-start-3",
-  },
-];
-
-function RevealTile({
-  delay,
-  className,
-  children,
-}: {
-  delay: number;
-  className: string;
-  children: React.ReactNode;
-}) {
-  const { ref, style } = useReveal<HTMLDivElement>({
-    y: 40,
-    scale: 0.96,
-    delay,
-    duration: 700,
-  });
-
-  return (
-    <div ref={ref} style={style} className={className}>
-      {children}
-    </div>
-  );
-}
-
+/** Galería full-bleed: dos bandas de borde a borde con 2px de separación. */
 export function GalleryBento() {
+  const boxRef = useRef<HTMLDivElement>(null);
+  const cursorRef = useRef<HTMLDivElement>(null);
+  // Cached so the fixed-size badge can be centered with a single whole-pixel
+  // translate — a percentage-based centering transform resolves to a
+  // fractional offset, which forces sub-pixel text rendering and blurs it.
+  const cursorHalfSize = useRef({ x: 0, y: 0 });
+
+  useEffect(() => {
+    if (!cursorRef.current) return;
+    const r = cursorRef.current.getBoundingClientRect();
+    cursorHalfSize.current = { x: r.width / 2, y: r.height / 2 };
+  }, []);
+
+  const onMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const box = boxRef.current;
+    const cursor = cursorRef.current;
+    if (!box || !cursor) return;
+    const r = box.getBoundingClientRect();
+    const x = Math.round(e.clientX - r.left - cursorHalfSize.current.x);
+    const y = Math.round(e.clientY - r.top - cursorHalfSize.current.y);
+    cursor.style.transform = `translate(${x}px, ${y}px)`;
+  }, []);
+
+  const show = useCallback((visible: boolean) => {
+    if (cursorRef.current) cursorRef.current.style.opacity = visible ? "1" : "0";
+  }, []);
+
   return (
-    <section className="bg-background px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-[1fr_1.6fr_1fr] grid-rows-[240px_240px_240px] gap-3">
-          {galleryItems.map((item, i) => (
-            <RevealTile key={item.src} delay={i * 70} className={item.className}>
-              <a
-                href={instagramHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative block h-full w-full overflow-hidden rounded"
-              >
-                <Image
-                  src={item.src}
-                  alt={item.alt}
-                  fill
-                  sizes={GRID_SIZES}
-                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-                />
-              </a>
-            </RevealTile>
-          ))}
+    <section
+      ref={boxRef}
+      onMouseMove={onMove}
+      onMouseEnter={() => show(true)}
+      onMouseLeave={() => show(false)}
+      className="relative bg-background md:cursor-none"
+    >
+      {/* Banda superior */}
+      <div className="flex flex-col gap-[2px] md:flex-row">
+        <Link
+          href="/proyectos"
+          className="group relative block h-[420px] overflow-hidden md:h-[660px] md:basis-[58%] md:shrink-0 md:grow-0"
+        >
+          <Image
+            src="/images/gallery/g-hero-i8.jpg"
+            alt="BMW i8"
+            fill
+            sizes="(min-width: 768px) 58vw, 100vw"
+            className={IMG}
+            priority
+          />
+        </Link>
 
-          <RevealTile
-            delay={galleryItems.length * 70}
-            className="col-start-2 row-start-1 row-span-2"
+        <div className="flex flex-col gap-[2px] md:flex-1">
+          <a
+            href={instagramHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block h-[240px] overflow-hidden md:h-auto md:flex-1"
           >
-            <Link
-              href="/proyectos"
-              className="group relative block h-full w-full overflow-hidden rounded"
-            >
-              <Image
-                src="/images/gallery/g-hero-i8.jpg"
-                alt="BMW i8"
-                fill
-                sizes={GRID_SIZES}
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-              <div className="absolute inset-x-0 bottom-6 flex justify-center">
-                <span className="inline-flex h-10 shrink-0 items-center whitespace-nowrap border border-white/30 px-6 text-[11px] font-semibold uppercase tracking-[0.22em] text-white transition-colors duration-300 group-hover:border-white group-hover:bg-white group-hover:text-black">
-                  Ver Proyectos
-                </span>
-              </div>
-            </Link>
-          </RevealTile>
-
-          <RevealTile
-            delay={(galleryItems.length + 1) * 70}
-            className="col-start-3 row-start-2 row-span-2"
+            <Image
+              src="/images/gallery/g-m340i.jpg"
+              alt="BMW M340i"
+              fill
+              sizes="(min-width: 768px) 25vw, 100vw"
+              className={IMG}
+            />
+          </a>
+          <a
+            href={instagramHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block h-[240px] overflow-hidden md:h-auto md:flex-1"
           >
-            <a
-              href={instagramHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block h-full w-full overflow-hidden rounded"
-            >
-              <Image
-                src="/images/gallery/g-raptor.jpg"
-                alt="Volkswagen Amarok V6"
-                fill
-                sizes={GRID_SIZES}
-                className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.06]"
-              />
-            </a>
-          </RevealTile>
+            <Image
+              src="/images/gallery/g-golf.jpg"
+              alt="Volkswagen Golf GTI"
+              fill
+              sizes="(min-width: 768px) 25vw, 100vw"
+              className={IMG}
+            />
+          </a>
         </div>
+
+        <a
+          href={instagramHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block h-[320px] overflow-hidden md:h-auto md:basis-[19%] md:shrink-0 md:grow-0"
+        >
+          <Image
+            src="/images/gallery/g-raptor.jpg"
+            alt="Volkswagen Amarok V6"
+            fill
+            sizes="(min-width: 768px) 19vw, 100vw"
+            className={IMG}
+          />
+        </a>
+      </div>
+
+      {/* Banda inferior */}
+      <div className="mt-[2px] flex flex-col gap-[2px] md:flex-row">
+        <a
+          href={instagramHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block h-[300px] overflow-hidden md:h-[340px] md:basis-[36%] md:shrink-0 md:grow-0"
+        >
+          <Image
+            src="/images/gallery/g-a5.jpg"
+            alt="Audi A5 S Line"
+            fill
+            sizes="(min-width: 768px) 36vw, 100vw"
+            className={IMG}
+          />
+        </a>
+        <a
+          href={instagramHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block h-[300px] overflow-hidden md:h-auto md:flex-1"
+        >
+          <Image
+            src="/images/gallery/g-m135i-2.jpg"
+            alt="BMW M135i xDrive"
+            fill
+            sizes="(min-width: 768px) 40vw, 100vw"
+            className={IMG}
+          />
+        </a>
+        <a
+          href={instagramHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative block h-[300px] overflow-hidden md:h-auto md:basis-[24%] md:shrink-0 md:grow-0"
+        >
+          <Image
+            src="/images/gallery/g-m240i.jpg"
+            alt="BMW M240i"
+            fill
+            sizes="(min-width: 768px) 24vw, 100vw"
+            className={IMG}
+          />
+        </a>
+      </div>
+
+      {/* Cursor custom */}
+      <div
+        ref={cursorRef}
+        aria-hidden
+        className="pointer-events-none absolute left-0 top-0 z-10 hidden opacity-0 transition-opacity duration-[260ms] ease-out will-change-transform md:block"
+      >
+        <span className="inline-flex h-12 items-center whitespace-nowrap border border-white/55 bg-black/35 px-[26px] font-plex-mono text-[11px] font-light uppercase tracking-[0.24em] text-white backdrop-blur-[6px]">
+          Ver proyectos →
+        </span>
       </div>
     </section>
   );

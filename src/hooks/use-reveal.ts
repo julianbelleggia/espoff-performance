@@ -29,7 +29,12 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      // No bottom-shrinking margin: a percentage-based inset here can make
+      // content near the very end of the page (e.g. the footer) impossible
+      // to ever intersect, since there's no scroll distance left to carry it
+      // into a shrunk zone. Threshold alone is enough to delay the reveal
+      // until the element is meaningfully on screen.
+      { threshold: 0.15 }
     );
 
     observer.observe(el);

@@ -29,7 +29,7 @@ export function PageHero({
       </nav>
 
       <div className="relative mt-11 grid grid-cols-1 items-end gap-10 sm:grid-cols-[minmax(0,1fr)_300px]">
-        <h1 className="m-0 font-hero font-black uppercase leading-[1.02] tracking-[-0.04em] text-white">
+        <h1 className="m-0 font-hero leading-[1.02] tracking-[-0.04em] text-white">
           <span className="block overflow-hidden">
             <span
               className="block text-[min(15vw,130px)]"

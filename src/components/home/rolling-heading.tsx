@@ -32,7 +32,7 @@ export function RollingHeading() {
   const transition = `transform ${rewinding ? REWIND_MS : SLIDE_MS}ms cubic-bezier(0.76, 0, 0.24, 1)`;
 
   return (
-    <h1 className="m-0 w-full font-hero text-[40px] font-bold uppercase leading-[1.02] tracking-[-0.04em] text-white sm:text-[80px] md:text-[80px] lg:text-[80px]">
+    <h1 className="m-0 w-full font-hero text-[40px] leading-[1.02] tracking-[-0.04em] text-white sm:text-[80px] md:text-[80px] lg:text-[80px]">
       <span className="animate-word-in-left block h-[1.02em] overflow-hidden">
         <span
           className="block"
