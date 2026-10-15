@@ -55,7 +55,7 @@ export function Footer() {
             ))}
           </div>
 
-          <div className="max-w-md border-t border-white/15 pt-5">
+          <div className="max-w-md pt-5">
             <ul className="flex flex-wrap gap-x-8 gap-y-2 font-plex-mono">
               {links.map((link) => (
                 <li key={link.label}>

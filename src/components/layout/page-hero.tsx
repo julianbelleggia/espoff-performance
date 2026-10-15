@@ -37,7 +37,9 @@ export function PageHero({
                 animation: "clip-up 1.15s cubic-bezier(0.16,1,0.3,1) 0.1s both",
               }}
             >
-              {title}
+              {/* .toUpperCase() here, not text-transform: uppercase — PT
+                  Serif Caption mis-renders the case-folded R and N. */}
+              {title.toUpperCase()}
             </span>
           </span>
           <span className="block overflow-hidden">

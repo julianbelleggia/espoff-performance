@@ -10,7 +10,7 @@ export default function PoliticaDePrivacidadPage() {
   return (
     <section className="mx-auto max-w-[760px] px-6 py-24 sm:py-28">
       <h1 className="font-hero text-3xl tracking-tight text-foreground sm:text-4xl">
-        Política de privacidad
+        POLÍTICA DE PRIVACIDAD
       </h1>
       <p className="mt-3 text-sm text-foreground/50">
         Última actualización: {new Date().toLocaleDateString("es-AR", {

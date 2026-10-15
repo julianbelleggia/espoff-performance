@@ -10,20 +10,20 @@ export function BrandsMarquee() {
   return (
     <div className="relative overflow-hidden marquee-mask">
       <div
-        className="animate-marquee flex w-max gap-10"
+        className="animate-marquee flex w-max gap-7"
         style={{ animationDuration: `${durationSec}s` }}
       >
         {loopBrands.map((brand, i) => (
           <div
             key={`${brand.slug}-${i}`}
-            className="relative flex h-14 w-28 shrink-0 items-center justify-center opacity-75 transition-opacity duration-200 hover:opacity-100"
+            className="relative h-8 w-32 shrink-0 opacity-75 transition-opacity duration-200 hover:opacity-100"
             title={brand.name}
           >
             <Image
               src={`/images/brands/${brand.slug}.png`}
               alt={brand.name}
               fill
-              sizes="112px"
+              sizes="128px"
               className="object-contain"
             />
           </div>

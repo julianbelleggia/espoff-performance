@@ -87,24 +87,28 @@ export function Navbar() {
 
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:h-24 sm:px-6 lg:px-8">
         <nav className="hidden items-center gap-8 pl-16 font-plex-mono sm:pl-20 md:flex">
-          <Link
-            href="/proyectos"
-            className="text-[12.8px] font-light uppercase tracking-[-0.128px] text-foreground/80 transition-colors hover:text-foreground"
-          >
-            Proyectos
-          </Link>
-          <Link
-            href="/nosotros"
-            className="text-[12.8px] font-light uppercase tracking-[-0.128px] text-foreground/80 transition-colors hover:text-foreground"
-          >
-            Nosotros
-          </Link>
-          <Link
-            href="/contacto"
-            className="text-[12.8px] font-light uppercase tracking-[-0.128px] text-foreground/80 transition-colors hover:text-foreground"
-          >
-            Contacto
-          </Link>
+          {[
+            { href: "/proyectos", label: "Proyectos" },
+            { href: "/nosotros", label: "Nosotros" },
+            { href: "/contacto", label: "Contacto" },
+          ].map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="group relative block h-[1em] overflow-hidden text-[12.8px] font-light uppercase leading-none tracking-[-0.128px]"
+            >
+              {/* Two stacked copies of the label inside an overflow-hidden,
+                  one-line-tall box: on hover the column slides up by half its
+                  own height (one line), swapping the dim copy for the full-
+                  opacity one underneath instead of just fading a color. */}
+              <span className="flex flex-col transition-transform duration-[800ms] ease-[cubic-bezier(0.14,1,0.34,1)] group-hover:-translate-y-1/2">
+                <span className="block text-foreground/80">{item.label}</span>
+                <span aria-hidden="true" className="block text-foreground">
+                  {item.label}
+                </span>
+              </span>
+            </Link>
+          ))}
         </nav>
 
         <Button

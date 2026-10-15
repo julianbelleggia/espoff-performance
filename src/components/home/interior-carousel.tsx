@@ -33,11 +33,14 @@ export function InteriorCarousel() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
           <div className="absolute bottom-6 left-6 flex flex-col gap-1 sm:bottom-10 sm:left-10">
+            {/* .toUpperCase() here (and literal caps below), not
+                text-transform: uppercase — PT Serif Caption mis-renders the
+                case-folded R and N; real capitals render correctly. */}
             <span className="font-hero text-sm tracking-wide text-white">
-              {shot.carName}
+              {shot.carName.toUpperCase()}
             </span>
             <span className="font-hero text-xs tracking-wide text-white/60">
-              Tu interior también suma.
+              TU INTERIOR TAMBIÉN SUMA.
             </span>
           </div>
         </div>

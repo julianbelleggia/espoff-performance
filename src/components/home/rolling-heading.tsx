@@ -2,7 +2,11 @@
 
 import { useEffect, useState } from "react";
 
-const WORDS = ["Estética", "Calidad", "Rendimiento"];
+// Written in literal caps rather than styled with text-transform: uppercase —
+// PT Serif Caption mis-renders the case-folded R and N (they overshoot the
+// cap line) when the browser does the uppercasing; typed capitals render
+// correctly.
+const WORDS = ["ESTÉTICA", "CALIDAD", "RENDIMIENTO"];
 const HOLD_MS = 1800;
 const SLIDE_MS = 800;
 const INTRO_MS = 1500;

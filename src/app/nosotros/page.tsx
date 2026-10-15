@@ -1,50 +1,16 @@
 import type { Metadata } from "next";
+import Image from "next/image";
+import { StatsBlock } from "@/components/nosotros/stats-block";
 import { VideoLoopFade } from "@/components/video-loop-fade";
-import { WorkPhotosCarousel } from "@/components/nosotros/work-photos-carousel";
 
 export const metadata: Metadata = {
   title: "Nosotros | ESPOFF Performance",
 };
 
-const workPhotos = [
-  ...Array.from({ length: 3 }, (_, i) => ({
-    src: `/images/nosotros/audi-rsq8-0${i + 1}.jpg`,
-    alt: `Audi RSQ8 preparado por ESPOFF Performance`,
-  })),
-  ...Array.from({ length: 3 }, (_, i) => ({
-    src: `/images/nosotros/bmw-220i-0${i + 1}.jpg`,
-    alt: `BMW 220i preparado por ESPOFF Performance`,
-  })),
-  ...Array.from({ length: 3 }, (_, i) => ({
-    src: `/images/nosotros/bmw-m135i-0${i + 1}.jpg`,
-    alt: `BMW M135i xDrive preparado por ESPOFF Performance`,
-  })),
-  ...Array.from({ length: 3 }, (_, i) => ({
-    src: `/images/nosotros/bmw-m340i-0${i + 1}.jpg`,
-    alt: `BMW M340i xDrive preparado por ESPOFF Performance`,
-  })),
-  ...Array.from({ length: 3 }, (_, i) => ({
-    src: `/images/nosotros/toyota-corolla-0${i + 1}.jpg`,
-    alt: `Toyota Corolla preparado por ESPOFF Performance`,
-  })),
-  ...Array.from({ length: 3 }, (_, i) => ({
-    src: `/images/nosotros/vw-polo-gts-0${i + 1}.jpg`,
-    alt: `Volkswagen Polo GTS preparado por ESPOFF Performance`,
-  })),
-  ...Array.from({ length: 3 }, (_, i) => ({
-    src: `/images/nosotros/vw-scirocco-0${i + 1}.jpg`,
-    alt: `Volkswagen Scirocco preparado por ESPOFF Performance`,
-  })),
-  ...Array.from({ length: 3 }, (_, i) => ({
-    src: `/images/nosotros/vw-up-pepper-0${i + 1}.jpg`,
-    alt: `Volkswagen up! Pepper preparado por ESPOFF Performance`,
-  })),
-];
-
 export default function NosotrosPage() {
   return (
     <>
-      <section className="relative -mt-20 h-[min(92vh,860px)] min-h-[520px] w-full overflow-hidden bg-black sm:-mt-24">
+      <section className="relative -mt-20 h-screen min-h-[520px] w-full overflow-hidden bg-black sm:-mt-24">
         <VideoLoopFade
           src="/videos/nosotros-hero.mp4"
           className="absolute inset-0 h-full w-full object-cover"
@@ -67,7 +33,7 @@ export default function NosotrosPage() {
                       "clip-up 1.15s cubic-bezier(0.16,1,0.3,1) 0.2s both",
                   }}
                 >
-                  ¿Quienes somos?
+                  ¿QUIENES SOMOS?
                 </span>
               </span>
             </h1>
@@ -75,21 +41,53 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1100px] px-6 pb-[132px] text-center">
-        <p
-          className="mx-auto max-w-[60ch] text-lg font-light leading-[1.72] text-white/[0.62]"
-          style={{ animation: "rise 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s both" }}
-        >
-          Somos una tienda especializada en accesorios de alto rendimiento:
-          spoilers, volantes, lips, difusores y escapes de las marcas más
-          reconocidas del automovilismo. Trabajamos con dueños que no se
-          conforman con lo de fábrica y acompañamos cada proyecto de
-          principio a fin.
-        </p>
-      </section>
-
-      <section className="pb-[132px]">
-        <WorkPhotosCarousel photos={workPhotos} />
+      <section className="flex flex-col">
+        {/* aspect-[16/9] matches each photo's own shape — object-cover never
+            has to crop them, since the box is never a different shape than
+            the image itself. Full-bleed width, same treatment as the hero
+            sections (no side padding, no letterboxing). */}
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-background">
+          <Image
+            src="/images/nosotros-ford-raptor.jpg"
+            alt="Ford Ranger Raptor preparado por ESPOFF Performance"
+            fill
+            sizes="100vw"
+            quality={90}
+            className="object-cover [filter:saturate(0.92)_contrast(1.05)_brightness(0.9)]"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.45) 35%, transparent 65%)",
+            }}
+          />
+          <p className="absolute inset-x-0 bottom-0 max-w-[55ch] p-6 text-base font-light leading-[1.7] text-white/90 sm:p-10 sm:text-lg lg:max-w-[640px] lg:p-[88px]">
+            Trabajamos con accesorios y piezas de performance (spoilers,
+            volantes, lips, difusores y escapes), reprogramación de ECU, PPF
+            y cualquier modificación que tengas en mente. Te acompañamos en
+            todo el proyecto, desde la primera consulta hasta que te llevás
+            el auto terminado.
+          </p>
+        </div>
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-background">
+          <Image
+            src="/images/nosotros-bmw-m240i.jpg"
+            alt="BMW M240i LCI preparado por ESPOFF Performance"
+            fill
+            sizes="100vw"
+            quality={90}
+            className="object-cover [filter:saturate(0.92)_contrast(1.05)_brightness(0.9)]"
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(to top, rgba(10,10,10,0.88) 0%, rgba(10,10,10,0.45) 35%, transparent 65%)",
+            }}
+          />
+          <StatsBlock />
+        </div>
       </section>
     </>
   );

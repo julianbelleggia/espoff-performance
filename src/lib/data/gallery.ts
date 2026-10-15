@@ -39,6 +39,12 @@ export const galleryCars: GalleryCar[] = [
     videos: ["/images/galeria/bmw-m240i/video.mp4"],
   },
   {
+    slug: "bmw-m240i-lci",
+    name: "BMW M240i LCI",
+    photos: Array.from({ length: 10 }, (_, i) => `/images/galeria/bmw-m240i-lci/${i + 1}.jpg`),
+    videos: ["/images/galeria/bmw-m240i-lci/video.mp4"],
+  },
+  {
     slug: "bmw-m340i-xdrive",
     name: "BMW M340i XDrive",
     photos: Array.from({ length: 10 }, (_, i) => `/images/galeria/bmw-m340i-xdrive/${i + 1}.jpg`),

@@ -4,7 +4,9 @@ import { useLayoutEffect, useRef } from "react";
 import Image from "next/image";
 import { useReveal } from "@/hooks/use-reveal";
 
-const HEADLINE = "El detalle hace la diferencia.";
+// Literal caps, not text-transform: uppercase — PT Serif Caption mis-renders
+// the case-folded R and N (see rolling-heading.tsx).
+const HEADLINE = "EL DETALLE HACE LA DIFERENCIA.";
 // Letters over which each character fades in — a soft, overlapping wave
 // instead of a hard per-letter cutoff.
 const BAND = 8;
@@ -63,8 +65,15 @@ export function StickyShowcase() {
             src="/images/gallery/showcase-m135i.jpg"
             alt="BMW M135i xDrive"
             fill
-            sizes="100vw"
-            className="object-cover"
+            // Esta sección queda fija a pantalla completa (h-screen) mientras
+            // dura el scroll, así que en celular (angosto y alto) el
+            // object-cover recorta mucho más ancho del que "100vw" hace
+            // pedir — sin esto se ve borrosa. La altura no se puede achicar
+            // acá porque el efecto de scroll (useLayoutEffect arriba) mide
+            // contra window.innerHeight.
+            sizes="(max-width: 768px) 300vw, 100vw"
+            quality={90}
+            className="object-cover object-[70%_38%]"
           />
           <div
             className="absolute inset-0"

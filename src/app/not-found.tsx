@@ -7,7 +7,7 @@ export default function NotFound() {
         Error 404
       </p>
       <h1 className="font-hero text-4xl tracking-tight text-foreground sm:text-6xl">
-        Esta página no existe
+        ESTA PÁGINA NO EXISTE
       </h1>
       <p className="max-w-md text-sm text-foreground/60">
         El link puede estar roto o el producto ya no está disponible. Volvé
