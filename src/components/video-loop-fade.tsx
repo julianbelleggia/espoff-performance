@@ -44,7 +44,11 @@ export function VideoLoopFade({
     a.style.opacity = "1";
     b.style.opacity = "0";
 
-    const start = () => active.play().catch(() => {});
+    let offscreen = false;
+
+    const start = () => {
+      if (!offscreen) active.play().catch(() => {});
+    };
     start();
     a.addEventListener("canplay", start);
     document.addEventListener("pointerdown", start, { once: true });
@@ -52,7 +56,7 @@ export function VideoLoopFade({
     let swapping = false;
     let swapTimeout: ReturnType<typeof setTimeout>;
     const swap = () => {
-      if (swapping) return;
+      if (swapping || offscreen) return;
       swapping = true;
       const next = idle;
       const cur = active;
@@ -73,18 +77,36 @@ export function VideoLoopFade({
 
     let raf: number;
     const tick = () => {
-      const v = active;
-      const d = loopOutRef.current ?? v.duration;
-      if (d && d - v.currentTime <= FADE_SECONDS) swap();
+      if (!offscreen) {
+        const v = active;
+        const d = loopOutRef.current ?? v.duration;
+        if (d && d - v.currentTime <= FADE_SECONDS) swap();
+      }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
+
+    // Pausa la reproducción cuando el video sale del viewport (scroll) para
+    // no seguir decodificando frames que no se ven.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        offscreen = !entry.isIntersecting;
+        if (offscreen) {
+          active.pause();
+        } else {
+          active.play().catch(() => {});
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(a);
 
     return () => {
       cancelAnimationFrame(raf);
       clearTimeout(swapTimeout);
       a.removeEventListener("canplay", start);
       document.removeEventListener("pointerdown", start);
+      observer.disconnect();
     };
   }, []);
 

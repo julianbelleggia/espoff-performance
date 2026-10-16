@@ -9,7 +9,8 @@ import {
 import { socials } from "@/lib/data/socials";
 
 export const metadata = {
-  title: "Tuning de Software | ESPOFF Performance",
+  title: "Tuning de Software",
+  alternates: { canonical: "/servicios/tuning-de-software" },
 };
 
 const highlights = [

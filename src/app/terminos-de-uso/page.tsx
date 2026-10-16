@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Términos de uso",
   description:
     "Condiciones de uso del sitio web de ESPOFF Performance.",
+  alternates: { canonical: "/terminos-de-uso" },
 };
 
 export default function TerminosDeUsoPage() {

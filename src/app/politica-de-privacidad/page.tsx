@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Política de privacidad",
   description:
     "Cómo ESPOFF Performance recopila, usa y protege tus datos de contacto.",
+  alternates: { canonical: "/politica-de-privacidad" },
 };
 
 export default function PoliticaDePrivacidadPage() {

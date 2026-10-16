@@ -2,7 +2,8 @@ import Image from "next/image";
 import { socials } from "@/lib/data/socials";
 
 export const metadata = {
-  title: "Contacto | ESPOFF Performance",
+  title: "Contacto",
+  alternates: { canonical: "/contacto" },
 };
 
 const EMAIL = "espoffperformance@gmail.com";

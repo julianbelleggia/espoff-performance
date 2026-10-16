@@ -2,7 +2,8 @@ import { GalleryGrid } from "@/components/gallery/gallery-grid";
 import { galleryCars } from "@/lib/data/gallery";
 
 export const metadata = {
-  title: "Proyectos | ESPOFF Performance",
+  title: "Proyectos",
+  alternates: { canonical: "/proyectos" },
 };
 
 export default function ProyectosPage() {

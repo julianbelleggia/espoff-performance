@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Aviso legal",
   description:
     "Identificación del titular del sitio, condiciones de uso y régimen de propiedad intelectual de ESPOFF Performance.",
+  alternates: { canonical: "/aviso-legal" },
 };
 
 export default function AvisoLegalPage() {

@@ -10,7 +10,10 @@ export function SmoothScroll() {
       easing: (t) => 1 - Math.pow(1 - t, 3),
       smoothWheel: true,
       touchMultiplier: 1.4,
-      respectReducedMotion: true,
+      // Deliberado: el sitio no adapta su movimiento a la preferencia de
+      // "reducir movimiento" del SO — la experiencia (scroll, video, carrusel)
+      // es la misma para todos los visitantes.
+      respectReducedMotion: false,
     });
 
     let rafId: number;

@@ -4,7 +4,7 @@ import { products } from "@/lib/data/products";
 import { CATALOG_ENABLED } from "@/lib/feature-flags";
 
 export const metadata = {
-  title: "Catálogo | ESPOFF Performance",
+  title: "Catálogo",
 };
 
 export default function CatalogoPage() {

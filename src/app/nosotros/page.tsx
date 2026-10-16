@@ -4,7 +4,8 @@ import { StatsBlock } from "@/components/nosotros/stats-block";
 import { VideoLoopFade } from "@/components/video-loop-fade";
 
 export const metadata: Metadata = {
-  title: "Nosotros | ESPOFF Performance",
+  title: "Nosotros",
+  alternates: { canonical: "/nosotros" },
 };
 
 export default function NosotrosPage() {

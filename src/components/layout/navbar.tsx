@@ -18,6 +18,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
   const logoVideoRef = useRef<HTMLVideoElement>(null);
+  const lastScrollYRef = useRef(0);
 
   const playLogoGlitch = () => {
     const video = logoVideoRef.current;
@@ -30,7 +31,11 @@ export function Navbar() {
     const video = logoVideoRef.current;
     if (!video) return;
     video.pause();
-    video.currentTime = 0;
+    // Deja el video en su cuadro final (el glitch ya asentado), no en el
+    // primero (en negro) — así el cross-fade de vuelta al logo estático
+    // siempre sale desde el mismo estado "resuelto", sin importar en qué
+    // punto del glitch estaba cuando se fue el cursor.
+    if (video.duration) video.currentTime = Math.max(0, video.duration - 0.05);
   };
 
   useEffect(() => {
@@ -38,9 +43,19 @@ export function Navbar() {
     // initializer (would break SSR) — it has to sync on mount instead.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setHidden(window.scrollY > 0);
+    lastScrollYRef.current = window.scrollY;
 
     const handleScroll = () => {
-      setHidden(window.scrollY > 0 && !mobileOpen);
+      const y = window.scrollY;
+      const lastY = lastScrollYRef.current;
+      if (mobileOpen || y <= 0) {
+        setHidden(false);
+      } else if (y > lastY) {
+        setHidden(true);
+      } else if (y < lastY) {
+        setHidden(false);
+      }
+      lastScrollYRef.current = y;
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -66,23 +81,34 @@ export function Navbar() {
         onMouseEnter={playLogoGlitch}
         onMouseLeave={resetLogoGlitch}
       >
-        <Image
-          src="/logo-white.svg"
-          alt="Logo"
-          width={80}
-          height={80}
-          preload
-          className="h-16 w-16 opacity-100 transition-opacity duration-150 group-hover:opacity-0 sm:h-20 sm:w-20"
-        />
-        <video
-          ref={logoVideoRef}
-          src="/videos/logo-glitch.webm?v=3"
-          muted
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 h-16 w-16 object-contain opacity-0 transition-opacity duration-150 group-hover:opacity-100 sm:h-20 sm:w-20"
-        />
+        {/* Tamaño fijo compartido: la imagen y el video se superponen exacto
+            dentro de esta caja en vez de centrarse cada uno por su cuenta
+            (el video en position:absolute no participa del items-center del
+            Link, así que sin esta caja queda unos px más arriba que el
+            logo estático). */}
+        <span className="relative block h-16 w-16 sm:h-20 sm:w-20">
+          <Image
+            src="/logo-white.svg"
+            alt="Logo"
+            width={80}
+            height={80}
+            preload
+            className="h-full w-full opacity-100 transition-opacity duration-150 group-hover:opacity-0"
+          />
+          <video
+            ref={logoVideoRef}
+            src="/videos/logo-glitch.webm?v=3"
+            muted
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+            // El arte del logo dentro del video ocupa más cuadro que en el
+            // SVG estático (menos padding interno) y además está centrado
+            // ~1.9% más a la derecha dentro de su propio cuadro — estos dos
+            // factores lo compensan para que, asentado, calce con el logo fijo.
+            className="pointer-events-none absolute inset-0 h-full w-full scale-[0.71] translate-x-[-1.94%] object-contain opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+          />
+        </span>
       </Link>
 
       <div className="relative mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:h-24 sm:px-6 lg:px-8">
@@ -115,7 +141,9 @@ export function Navbar() {
           variant="ghost"
           size="icon"
           className="ml-auto md:hidden"
-          aria-label="Abrir menú"
+          aria-label={mobileOpen ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={mobileOpen}
+          aria-controls="mobile-nav"
           onClick={() => setMobileOpen((v) => !v)}
         >
           {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -123,6 +151,7 @@ export function Navbar() {
       </div>
 
       <nav
+        id="mobile-nav"
         className={cn(
           "border-t border-border/50 bg-black md:hidden",
           mobileOpen ? "block" : "hidden"
