@@ -92,7 +92,7 @@ export function GalleryBento() {
       <div className="flex flex-col gap-[2px] md:flex-row">
         <Link
           href="/proyectos"
-          className="group relative block h-[420px] overflow-hidden md:h-[660px] md:basis-[58%] md:shrink-0 md:grow-0"
+          className="group relative block h-[420px] overflow-hidden md:h-[660px] md:basis-[58%] md:shrink-0 md:grow-0 md:cursor-none"
         >
           <Image
             src="/images/gallery/g-hero-i8.jpg"
@@ -106,7 +106,7 @@ export function GalleryBento() {
         <div className="flex flex-col gap-[2px] md:flex-1">
           <Link
             href="/proyectos"
-            className="group relative block h-[240px] overflow-hidden md:h-auto md:flex-1"
+            className="group relative block h-[240px] overflow-hidden md:h-auto md:flex-1 md:cursor-none"
           >
             <Image
               src="/images/gallery/g-m340i.jpg"
@@ -118,7 +118,7 @@ export function GalleryBento() {
           </Link>
           <Link
             href="/proyectos"
-            className="group relative block h-[240px] overflow-hidden md:h-auto md:flex-1"
+            className="group relative block h-[240px] overflow-hidden md:h-auto md:flex-1 md:cursor-none"
           >
             <Image
               src="/images/gallery/g-golf.jpg"
@@ -132,7 +132,7 @@ export function GalleryBento() {
 
         <Link
           href="/proyectos"
-          className="group relative block h-[320px] overflow-hidden md:h-auto md:basis-[19%] md:shrink-0 md:grow-0"
+          className="group relative block h-[320px] overflow-hidden md:h-auto md:basis-[19%] md:shrink-0 md:grow-0 md:cursor-none"
         >
           <Image
             src="/images/gallery/g-raptor.jpg"
@@ -148,7 +148,7 @@ export function GalleryBento() {
       <div className="mt-[2px] flex flex-col gap-[2px] md:flex-row">
         <Link
           href="/proyectos"
-          className="group relative block h-[300px] overflow-hidden md:h-[340px] md:basis-[36%] md:shrink-0 md:grow-0"
+          className="group relative block h-[300px] overflow-hidden md:h-[340px] md:basis-[36%] md:shrink-0 md:grow-0 md:cursor-none"
         >
           <Image
             src="/images/gallery/g-a5.jpg"
@@ -160,7 +160,7 @@ export function GalleryBento() {
         </Link>
         <Link
           href="/proyectos"
-          className="group relative block h-[300px] overflow-hidden md:h-auto md:flex-1"
+          className="group relative block h-[300px] overflow-hidden md:h-auto md:flex-1 md:cursor-none"
         >
           <Image
             src="/images/gallery/g-m135i-2.jpg"
@@ -172,7 +172,7 @@ export function GalleryBento() {
         </Link>
         <Link
           href="/proyectos"
-          className="group relative block h-[300px] overflow-hidden md:h-auto md:basis-[24%] md:shrink-0 md:grow-0"
+          className="group relative block h-[300px] overflow-hidden md:h-auto md:basis-[24%] md:shrink-0 md:grow-0 md:cursor-none"
         >
           <Image
             src="/images/gallery/g-m240i.jpg"

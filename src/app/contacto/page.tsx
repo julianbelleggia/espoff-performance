@@ -34,7 +34,7 @@ export default function ContactoPage() {
         priority
         className="object-cover scale-110"
         style={{
-          filter: "saturate(0.92) contrast(1.05) brightness(0.82) blur(6px)",
+          filter: "saturate(0.92) contrast(1.05) brightness(0.82) blur(2px)",
         }}
       />
       <div className="absolute inset-0 bg-black/55" />
@@ -68,44 +68,42 @@ export default function ContactoPage() {
           style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.5s both" }}
         >
           <div className="h-[2px] w-16 bg-white/30" />
-          <a
-            href={`mailto:${EMAIL}`}
-            className="group relative block h-[1em] overflow-hidden font-satoshi text-[13px] uppercase leading-none tracking-[0.18em] sm:text-base"
-          >
-            <span className="flex flex-col transition-transform duration-[800ms] ease-[cubic-bezier(0.14,1,0.34,1)] group-hover:-translate-y-1/2">
-              <span className="block text-white/90">{EMAIL}</span>
-              <span aria-hidden="true" className="block text-white">
-                {EMAIL}
-              </span>
-            </span>
-          </a>
+          <div className="flex items-center gap-8">
+            {socialLinks.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative block h-[1em] overflow-hidden font-satoshi text-[13px] uppercase leading-none tracking-[0.26em] sm:text-base"
+              >
+                {/* Same flip-reveal mechanic as the navbar links: two stacked
+                    copies in a one-line-tall box, sliding up on hover instead
+                    of changing to the accent color. */}
+                <span className="flex flex-col transition-transform duration-[800ms] ease-[cubic-bezier(0.14,1,0.34,1)] group-hover:-translate-y-1/2">
+                  <span className="block text-white/80">{s.label}</span>
+                  <span aria-hidden="true" className="block text-white">
+                    {s.label}
+                  </span>
+                </span>
+              </a>
+            ))}
+          </div>
           <div className="h-[2px] w-16 bg-white/30" />
         </div>
 
-        <div
-          className="flex items-center gap-8"
+        <a
+          href={`mailto:${EMAIL}`}
+          className="group relative block h-[1em] overflow-hidden font-satoshi text-[13px] uppercase leading-none tracking-[0.18em] sm:text-base"
           style={{ animation: "rise 1s cubic-bezier(0.16,1,0.3,1) 0.65s both" }}
         >
-          {socialLinks.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative block h-[1em] overflow-hidden font-satoshi text-[13px] uppercase leading-none tracking-[0.26em] sm:text-base"
-            >
-              {/* Same flip-reveal mechanic as the navbar links: two stacked
-                  copies in a one-line-tall box, sliding up on hover instead
-                  of changing to the accent color. */}
-              <span className="flex flex-col transition-transform duration-[800ms] ease-[cubic-bezier(0.14,1,0.34,1)] group-hover:-translate-y-1/2">
-                <span className="block text-white/80">{s.label}</span>
-                <span aria-hidden="true" className="block text-white">
-                  {s.label}
-                </span>
-              </span>
-            </a>
-          ))}
-        </div>
+          <span className="flex flex-col transition-transform duration-[800ms] ease-[cubic-bezier(0.14,1,0.34,1)] group-hover:-translate-y-1/2">
+            <span className="block text-white/90">{EMAIL}</span>
+            <span aria-hidden="true" className="block text-white">
+              {EMAIL}
+            </span>
+          </span>
+        </a>
       </div>
     </section>
   );
